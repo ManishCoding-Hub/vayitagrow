@@ -1,0 +1,174 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* ------------------------------------------------------------------ */
+  /* Brand palette - VayitaGrow Bioorganics                             */
+  /* Green scale derived from the brand primary #14833B; gold accent.   */
+  /* ------------------------------------------------------------------ */
+  --color-brand-50: #f2faf4;
+  --color-brand-100: #eaf6ed;
+  --color-brand-200: #c9e8d2;
+  --color-brand-300: #9bd4ac;
+  --color-brand-400: #58b478;
+  --color-brand-500: #2a9d4b;
+  --color-brand-600: #14833b;
+  --color-brand-700: #106b31;
+  --color-brand-800: #0d5628;
+  --color-brand-900: #0a4520;
+  --color-brand-950: #052e18;
+
+  --color-gold-100: #fbf3dd;
+  --color-gold-300: #ecc95e;
+  --color-gold-500: #d4a017;
+  --color-gold-700: #a87d0f;
+
+  /* Semantic status colors (StatusBadge, alerts, form feedback) */
+  --color-status-success: #14833b;
+  --color-status-success-soft: #eaf6ed;
+  --color-status-warning: #b45309;
+  --color-status-warning-soft: #fef3e2;
+  --color-status-danger: #b91c1c;
+  --color-status-danger-soft: #fdecec;
+  --color-status-info: #1d4ed8;
+  --color-status-info-soft: #e8effd;
+  --color-status-neutral: #52525b;
+  --color-status-neutral-soft: #f2f2f3;
+
+  /* Motion tokens - calm/confident language */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+  /* Heading face; also consumed by shadcn primitives via the font-heading utility. */
+  --font-heading: var(--font-fraunces);
+
+  /* shadcn tokens */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1c2620;
+  --card: #ffffff;
+  --card-foreground: #1c2620;
+  --popover: #ffffff;
+  --popover-foreground: #1c2620;
+  --primary: #14833b;
+  --primary-foreground: #ffffff;
+  --secondary: #eaf6ed;
+  --secondary-foreground: #106b31;
+  --muted: #f6f8f6;
+  --muted-foreground: #57635b;
+  --accent: #eaf6ed;
+  --accent-foreground: #106b31;
+  --destructive: #b91c1c;
+  --border: #e4e9e5;
+  --input: #e4e9e5;
+  --ring: #14833b;
+  --chart-1: #14833b;
+  --chart-2: #58b478;
+  --chart-3: #d4a017;
+  --chart-4: #0a4520;
+  --chart-5: #9bd4ac;
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1c2620;
+  --sidebar-primary: #14833b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf6ed;
+  --sidebar-accent-foreground: #106b31;
+  --sidebar-border: #e4e9e5;
+  --sidebar-ring: #14833b;
+}
+
+/* Smooth scrolling - Next 16 requires data-scroll-behavior="smooth" on <html>
+   for router navigations to respect it; the attribute is set in app/layout.tsx. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbars everywhere (owner preference; scrolling itself still works). */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), serif;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+}
+
+/* Reduced motion: collapse animations & transitions to near-instant. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
