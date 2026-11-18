@@ -6,8 +6,8 @@
 export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vayitagrow.com",
   name: "VayitaGrow Bioorganics",
-  defaultTitle: "VayitaGrow Bioorganics - Sustainable Agricultural Solutions",
+  defaultTitle: "VayitaGrow Bioorganics: Sustainable Agricultural Solutions",
   titleTemplate: "%s | VayitaGrow Bioorganics",
   description:
-    "VAYITAGROW BIOORGANICS PRIVATE LIMITED manufactures and markets bioorganic agricultural inputs - plant growth promoters, organic fertilizers, soil conditioners, and crop nutrition products - supporting sustainable farming across West Bengal and Jharkhand.",
+    "VAYITAGROW BIOORGANICS PRIVATE LIMITED manufactures and markets bioorganic agricultural inputs such as plant growth promoters, organic fertilizers, soil conditioners, and crop nutrition products, supporting sustainable farming across West Bengal and Jharkhand.",
 } as const;

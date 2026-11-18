@@ -277,7 +277,7 @@ export function DashboardCharts({
         doc.text(CHART_TYPES[i].label, 40, 42);
         doc.setFontSize(9);
         doc.setTextColor(150, 158, 153);
-        doc.text("VayitaGrow — Dashboard analytics", 40, 58);
+        doc.text("VayitaGrow Dashboard analytics", 40, 58);
 
         // Chart image (height-capped to leave room for the data table).
         let w = pageWidth - 80;

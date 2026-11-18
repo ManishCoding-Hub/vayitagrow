@@ -71,7 +71,7 @@ export async function submitInquiry(input: InquiryInput): Promise<ActionResult> 
   if (inbox) {
     await sendEmail({
       to: inbox,
-      subject: `New inquiry (${subject}) — ${name}`,
+      subject: `New inquiry (${subject}) from ${name}`,
       html: inquiryEmail(parsed.data),
       replyTo: email || undefined,
     });
@@ -117,7 +117,7 @@ export async function submitPublicFeedback(input: PublicFeedbackInput): Promise<
   if (inbox) {
     await sendEmail({
       to: inbox,
-      subject: `New feedback (${role}) — ${name}`,
+      subject: `New feedback (${role}) from ${name}`,
       html: feedbackEmail({ name, organization: organization || undefined, role, message }),
     });
   }

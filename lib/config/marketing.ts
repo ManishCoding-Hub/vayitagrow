@@ -41,7 +41,7 @@ export const whyChooseUs: ValuePillar[] = [
   {
     title: "Science-Led Formulations",
     description:
-      "Each formulation is built around well-understood agricultural inputs - humic substances, amino acids, seaweed extracts, and beneficial enzymes.",
+      "Each formulation is built around well-understood agricultural inputs such as humic substances, amino acids, seaweed extracts, and beneficial enzymes.",
     icon: FlaskConical,
   },
   {
@@ -62,7 +62,7 @@ export const coreValues: ValuePillar[] = [
   {
     title: "Quality First",
     description:
-      "No compromise on product standards - quality is checked at every stage from raw material to packed product.",
+      "No compromise on product standards, so quality is checked at every stage from raw material to packed product.",
     icon: Award,
   },
   {

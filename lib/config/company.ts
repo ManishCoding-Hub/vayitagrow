@@ -21,7 +21,7 @@ export const company = {
     addressLines: ["Registered Office", "Jharkhand, India"],
     mobiles: ["+91 96096 02539", "+91 74318 17917"],
     email: "vayitagrowbio.organics@gmail.com",
-    hours: "Monday - Saturday, 9:00 AM - 6:00 PM IST",
+    hours: "Monday to Saturday, 9:00 AM to 6:00 PM IST",
   },
 } as const;
 

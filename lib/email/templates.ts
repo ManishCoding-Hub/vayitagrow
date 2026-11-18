@@ -25,7 +25,7 @@ function row(label: string, value: string | null | undefined): string {
 function shell(title: string, body: string): string {
   return `<div style="font-family:Inter,Arial,sans-serif;max-width:560px;margin:0 auto">
     <div style="background:#14833b;color:#fff;padding:16px 20px;border-radius:10px 10px 0 0;font-size:15px;font-weight:600">
-      ${esc(company.displayName)} — ${esc(title)}
+      ${esc(company.displayName)}: ${esc(title)}
     </div>
     <div style="border:1px solid #e3e8e4;border-top:none;border-radius:0 0 10px 10px;padding:16px 8px">
       <table style="width:100%;border-collapse:collapse">${body}</table>
