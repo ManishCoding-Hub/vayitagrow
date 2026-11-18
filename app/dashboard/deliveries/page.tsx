@@ -13,6 +13,7 @@ import { getDeliveries } from "@/lib/services/deliveries";
 import { DELIVERY_STATUSES, enumLabel, type DeliveryStatus } from "@/lib/types/database";
 import type { DeliveryWithOrder } from "@/lib/types/delivery";
 import { paramNumber, paramString } from "@/lib/url";
+import { DeliveryDelete } from "./delivery-delete";
 
 export const metadata: Metadata = { title: "Deliveries" };
 
@@ -75,6 +76,12 @@ export default async function DeliveriesPage(props: PageProps<"/dashboard/delive
       key: "status",
       header: "Status",
       cell: (delivery) => <StatusBadge status={delivery.status} />,
+    },
+    {
+      key: "actions",
+      header: <span className="sr-only">Actions</span>,
+      className: "w-12 text-right",
+      cell: (delivery) => <DeliveryDelete deliveryId={delivery.deliveryId} />,
     },
   ];
 

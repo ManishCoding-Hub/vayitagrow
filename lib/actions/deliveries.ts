@@ -77,6 +77,23 @@ export async function createDelivery(input: DeliveryInput): Promise<ActionResult
   return { ok: true, data: { id: deliveryId } };
 }
 
+export async function deleteDelivery(id: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return deliveriesPg.deleteDelivery(id, session);
+  await latency();
+
+  const store = db();
+  const delivery = store.deliveries.find((d) => d.deliveryId === id);
+  if (!delivery) return { ok: false, error: "Delivery not found." };
+
+  store.deliveryUpdates = store.deliveryUpdates.filter((u) => u.deliveryId !== id);
+  store.deliveries = store.deliveries.filter((d) => d.deliveryId !== id);
+
+  recordActivity(session.userId, "DELETE", "DELIVERY", id);
+  revalidateDeliveryRoutes(delivery.orderId);
+  return { ok: true, data: undefined };
+}
+
 const updateSchema = z.object({
   deliveryId: z.number().int().positive(),
   status: z.enum(DELIVERY_STATUSES),

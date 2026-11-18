@@ -113,6 +113,26 @@ export async function createDelivery(
   return { ok: true, data: { id } };
 }
 
+export async function deleteDelivery(id: number, session: SessionUser): Promise<ActionResult> {
+  const delivery = await queryOne<{ deliveryId: number; orderId: number }>(
+    "SELECT delivery_id, order_id FROM deliveries WHERE delivery_id = $1",
+    [id],
+  );
+  if (!delivery) return { ok: false, error: "Delivery not found." };
+
+  await withActor(session.userId, async (c) => {
+    // delivery_updates cascade via FK.
+    await c.query("DELETE FROM deliveries WHERE delivery_id = $1", [id]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'DELIVERY', $2)",
+      [session.userId, id],
+    );
+  });
+
+  revalidateDeliveryRoutes(delivery.orderId);
+  return { ok: true, data: undefined };
+}
+
 export async function addDeliveryUpdate(
   data: DeliveryUpdateInput,
   session: SessionUser,
