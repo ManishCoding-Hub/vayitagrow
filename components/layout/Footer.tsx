@@ -83,7 +83,7 @@ export function Footer() {
 
         <div
           aria-hidden
-          className="mt-16 flex items-end gap-[0.25em] text-[clamp(2.5rem,15vw,13rem)] text-white opacity-[0.06] select-none"
+          className="mt-16 flex items-end gap-[0.25em] text-[clamp(2.5rem,13vw,11.5rem)] text-white opacity-[0.06] select-none"
         >
           <span className="relative mb-[0.12em] block h-[0.72em] shrink-0 aspect-[3/2]">
             <Image
