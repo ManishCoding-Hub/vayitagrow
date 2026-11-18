@@ -47,7 +47,7 @@ export default async function ContactPage(props: PageProps<"/contact">) {
         eyebrow="Contact & Orders"
         title="Talk to our team"
         image="/images/wheat-sunset.webp"
-        lede="Whether you want to join the dealer network, place an order inquiry, or ask about a product - send a message and we will get back to you."
+        lede="Whether you want to join the dealer network, place an order inquiry, or ask about a product, send a message and we will get back to you."
       />
 
       <section className="bg-cream-50">

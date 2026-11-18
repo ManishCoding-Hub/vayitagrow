@@ -90,7 +90,7 @@ export default async function HomePage() {
             <MotionReveal delay={0.7}>
               <p className="max-w-xl text-base leading-relaxed text-pretty text-brand-100 sm:text-lg">
                 {company.legalName} manufactures and markets bioorganic inputs that improve soil
-                health, crop nutrition, and farm productivity - supplied through a trusted dealer
+                health, crop nutrition, and farm productivity, supplied through a trusted dealer
                 network across {company.operatingStates.join(" and ")}.
               </p>
             </MotionReveal>
@@ -172,7 +172,7 @@ export default async function HomePage() {
             <MotionReveal delay={0.1}>
               <div className="mt-8 space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>
-                  We combine scientific agricultural practice with strong field support - helping
+                  We combine scientific agricultural practice with strong field support, helping
                   dealers, distributors, and the farmers they serve get dependable results from
                   every input.
                 </p>
@@ -182,8 +182,8 @@ export default async function HomePage() {
                   productive farming.
                 </p>
                 <p>
-                  Our field teams work alongside dealers in {company.operatingStates.join(" and ")}{" "}
-                  - demonstrating correct application, collecting feedback, and building the
+                  Our field teams work alongside dealers in {company.operatingStates.join(" and ")},
+                  demonstrating correct application, collecting feedback, and building the
                   long-term relationships this business runs on.
                 </p>
               </div>

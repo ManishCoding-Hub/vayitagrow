@@ -60,7 +60,7 @@ export default async function LoginPage(props: PageProps<"/login">) {
             One portal for the whole operation
           </h1>
           <p className="text-sm leading-relaxed text-brand-200">
-            Clients, orders, statements, field reports, inventory, and the product catalog -
+            Clients, orders, statements, field reports, inventory, and the product catalog,
             managed in one place by the {company.shortName} team.
           </p>
           <ul className="space-y-3">

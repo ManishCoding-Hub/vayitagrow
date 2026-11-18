@@ -7,7 +7,7 @@ import { FeedbackForm } from "./feedback-form";
 
 export const metadata: Metadata = {
   title: "Feedback",
-  description: `Share your experience with ${company.shortName} Bioorganics products and service - feedback from dealers, retailers, and farmers shapes what we build next.`,
+  description: `Share your experience with ${company.shortName} Bioorganics products and service. Feedback from dealers, retailers, and farmers shapes what we build next.`,
 };
 
 const reasons = [
@@ -15,13 +15,13 @@ const reasons = [
     icon: Sprout,
     title: "Product performance",
     description:
-      "Tell us how our products perform on real crops and soils - results, dosage experience, and anything that could work better.",
+      "Tell us how our products perform on real crops and soils, including results, dosage experience, and anything that could work better.",
   },
   {
     icon: Users,
     title: "Dealer & service experience",
     description:
-      "Supply timelines, packaging, field support, business terms - we want to know how working with us feels on the ground.",
+      "Supply timelines, packaging, field support, business terms: we want to know how working with us feels on the ground.",
   },
   {
     icon: MessageSquareHeart,
@@ -39,7 +39,7 @@ export default function FeedbackPage() {
         title="Your experience shapes our products"
         size="headline"
         image="/images/field-aerial.webp"
-        lede="We are building this company together with our dealer network and the farmers they serve. Honest feedback - good or critical - is always welcome."
+        lede="We are building this company together with our dealer network and the farmers they serve. Honest feedback, whether good or critical, is always welcome."
       />
 
       <section className="bg-cream-50">

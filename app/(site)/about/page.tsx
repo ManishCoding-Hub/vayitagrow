@@ -18,7 +18,7 @@ const operations = [
   {
     title: "Manufacturing",
     description:
-      "Bioorganic inputs - growth promoters, organic fertilizers, soil conditioners, enzymes, and spray adjuvants - produced under careful quality control.",
+      "Bioorganic inputs such as growth promoters, organic fertilizers, soil conditioners, enzymes, and spray adjuvants, produced under careful quality control.",
     icon: Factory,
   },
   {
@@ -29,7 +29,7 @@ const operations = [
   {
     title: "Field Support",
     description:
-      "Field teams conduct dealer visits, application demonstrations, and farmer meetings - turning ground-level feedback into better products and better guidance.",
+      "Field teams conduct dealer visits, application demonstrations, and farmer meetings, turning ground-level feedback into better products and better guidance.",
     icon: Users,
   },
 ];
@@ -65,12 +65,12 @@ export default function AboutPage() {
                   {company.shortName} Bioorganics was founded to bring dependable, science-led
                   bioorganic inputs to the farmers of {company.operatingStates.join(" and ")}. We
                   focus on products that improve soil health, crop nutrition, and overall farm
-                  efficiency - the foundations of long-term productivity.
+                  efficiency, which are the foundations of long-term productivity.
                 </p>
                 <p>
                   We work business-to-business: dealers, distributors, retailers, and
                   institutional buyers are our partners on the ground. Their counters and
-                  godowns are where our products meet the farmer, so we invest in the network -
+                  godowns are where our products meet the farmer, so we invest in the network with
                   fair terms, reliable supply, and field support that shows up.
                 </p>
                 <p>
@@ -100,7 +100,7 @@ export default function AboutPage() {
             {
               icon: Eye,
               title: "Our Vision",
-              text: "To be a trusted name in sustainable agriculture - known for products that restore soil, support farmers, and prove that productive farming and responsible farming are the same thing.",
+              text: "To be a trusted name in sustainable agriculture, known for products that restore soil, support farmers, and prove that productive farming and responsible farming are the same thing.",
             },
             {
               icon: Target,

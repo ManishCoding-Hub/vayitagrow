@@ -11,7 +11,7 @@ import { paramNumber } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "Products",
-  description: `Bioorganic agricultural inputs by ${company.shortName} Bioorganics - plant growth promoters, organic fertilizers, soil conditioners, enzymes, and spray adjuvants.`,
+  description: `Bioorganic agricultural inputs by ${company.shortName} Bioorganics: plant growth promoters, organic fertilizers, soil conditioners, enzymes, and spray adjuvants.`,
 };
 
 export default async function ProductsPage(props: PageProps<"/products">) {
@@ -40,7 +40,7 @@ export default async function ProductsPage(props: PageProps<"/products">) {
         title="Bioorganic inputs for productive farming"
         size="headline"
         image="/images/paddy-mist.webp"
-        lede="Every product below is part of our current manufactured range - with usage, dosage, and pack sizes taken directly from the official product literature."
+        lede="Every product below is part of our current manufactured range, with usage, dosage, and pack sizes taken directly from the official product literature."
       />
 
       <section className="bg-cream-50">

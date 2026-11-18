@@ -61,7 +61,7 @@ export function FeedbackForm() {
         <div className="space-y-1">
           <h3 className="font-sans text-lg font-semibold">Feedback received</h3>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Thank you for taking the time - feedback from the field directly shapes our
+            Thank you for taking the time. Feedback from the field directly shapes our
             products and service.
           </p>
         </div>
