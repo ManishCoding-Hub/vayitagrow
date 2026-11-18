@@ -48,6 +48,7 @@ function validate(input: ProductInput) {
 }
 
 function revalidateProductRoutes(): void {
+  revalidatePath("/");
   revalidatePath("/products");
   revalidatePath("/products/[slug]", "page");
   revalidatePath("/dashboard/catalog/products");

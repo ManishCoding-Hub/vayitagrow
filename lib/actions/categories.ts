@@ -19,6 +19,7 @@ const categorySchema = z.object({
 });
 
 function revalidateCategoryRoutes(): void {
+  revalidatePath("/");
   revalidatePath("/products");
   revalidatePath("/dashboard/catalog/categories");
   revalidatePath("/dashboard/catalog/products");

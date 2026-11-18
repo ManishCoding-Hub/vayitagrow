@@ -81,8 +81,8 @@ export default async function HomePage() {
         <div className="mx-auto grid w-full max-w-7xl flex-1 gap-12 px-4 pt-36 pb-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8">
           <div className="space-y-8">
             <MotionReveal>
-              <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-[0.18em] text-brand-100 uppercase backdrop-blur">
-                <span aria-hidden className="size-1.5 rounded-full bg-gold-300" />
+              <p className="flex items-center gap-4 text-xs font-medium tracking-[0.22em] text-brand-100 uppercase sm:text-[0.8rem]">
+                <span aria-hidden className="h-px w-10 shrink-0 bg-gold-300" />
                 {company.industry}
               </p>
             </MotionReveal>

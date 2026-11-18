@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -33,6 +34,7 @@ export function HeroSlideshow({
 }) {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
   const [paused, setPaused] = useState(false);
 
   const pointerX = useMotionValue(0);
@@ -43,7 +45,17 @@ export function HeroSlideshow({
   if (slides.length === 0) return null;
   const current = slides[index];
   const autoplay = !reduce && slides.length > 1;
-  const next = () => setIndex((i) => (i + 1) % slides.length);
+  const go = (step: 1 | -1) => {
+    setDirection(step);
+    setIndex((i) => (i + step + slides.length) % slides.length);
+  };
+  const jump = (target: number) => {
+    setDirection(target > index ? 1 : -1);
+    setIndex(target);
+  };
+  const next = () => go(1);
+  const arrowClass =
+    "absolute top-1/2 z-20 flex size-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:bg-white hover:text-brand-900 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:outline-none";
 
   return (
     <div
@@ -59,6 +71,11 @@ export function HeroSlideshow({
       }}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
+      onKeyDown={(event) => {
+        if (slides.length < 2) return;
+        if (event.key === "ArrowRight") go(1);
+        if (event.key === "ArrowLeft") go(-1);
+      }}
     >
       <span
         aria-hidden
@@ -80,12 +97,22 @@ export function HeroSlideshow({
           aria-hidden
           className="absolute top-1/2 left-1/2 size-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(88,180,120,0.45),rgba(88,180,120,0)_68%)]"
         />
+        {slides.length > 1 ? (
+          <>
+            <button type="button" aria-label="Previous product" onClick={() => go(-1)} className={cn(arrowClass, "left-0")}>
+              <ChevronLeft aria-hidden className="size-5" />
+            </button>
+            <button type="button" aria-label="Next product" onClick={() => go(1)} className={cn(arrowClass, "right-0")}>
+              <ChevronRight aria-hidden className="size-5" />
+            </button>
+          </>
+        ) : null}
         <AnimatePresence mode="wait">
           <motion.div
             key={current.src}
-            initial={reduce ? false : { opacity: 0, y: 48, scale: 0.9, rotate: -5 }}
-            animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -36, scale: 0.94, rotate: 4 }}
+            initial={reduce ? false : { opacity: 0, x: 90 * direction, scale: 0.9, rotate: 5 * direction }}
+            animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, x: -90 * direction, scale: 0.94, rotate: -4 * direction }}
             transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}
             style={reduce ? undefined : { rotateX, rotateY }}
             className="absolute inset-0"
@@ -128,7 +155,7 @@ export function HeroSlideshow({
               type="button"
               aria-label={`Show ${slide.name}`}
               aria-current={i === index}
-              onClick={() => setIndex(i)}
+              onClick={() => jump(i)}
               className="group flex-1 rounded-full py-2 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:outline-none"
             >
               <span className="relative block h-[3px] overflow-hidden rounded-full bg-white/20">
