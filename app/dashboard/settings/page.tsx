@@ -33,7 +33,7 @@ export default async function SettingsPage() {
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <section aria-labelledby="system-settings" className="rounded-xl border bg-card lg:col-span-2">
+        <section aria-labelledby="system-settings" className="rounded-2xl border bg-card shadow-xs lg:col-span-2">
           <h2 id="system-settings" className="border-b p-5 pb-4 font-sans text-base font-semibold">
             System settings
           </h2>
@@ -53,7 +53,7 @@ export default async function SettingsPage() {
           <ChangePasswordCard />
           {twoFaEligible ? <TwoFactorCard initialEnabled={twoFaEnabled} /> : null}
 
-          <section aria-labelledby="account-info" className="rounded-xl border bg-card p-5">
+          <section aria-labelledby="account-info" className="rounded-2xl border bg-card shadow-xs p-5">
             <h2 id="account-info" className="mb-4 font-sans text-base font-semibold">
               Your account
             </h2>

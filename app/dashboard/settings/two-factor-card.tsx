@@ -72,7 +72,7 @@ export function TwoFactorCard({ initialEnabled }: { initialEnabled: boolean }) {
   }
 
   return (
-    <section aria-labelledby="two-factor" className="rounded-xl border bg-card p-5">
+    <section aria-labelledby="two-factor" className="rounded-2xl border bg-card shadow-xs p-5">
       <h2 id="two-factor" className="mb-1 flex items-center gap-2 font-sans text-base font-semibold">
         {enabled ? (
           <ShieldCheck aria-hidden className="size-4 text-status-success" />

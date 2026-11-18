@@ -87,7 +87,7 @@ export default async function QuotationDetailPage({ params }: Props) {
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <section aria-labelledby="q-items" className="rounded-xl border bg-card lg:col-span-2">
+        <section aria-labelledby="q-items" className="rounded-2xl border bg-card shadow-xs lg:col-span-2">
           <h2 id="q-items" className="border-b p-5 pb-4 font-sans text-base font-semibold">
             Items
           </h2>
@@ -129,7 +129,7 @@ export default async function QuotationDetailPage({ params }: Props) {
           </p>
         </section>
 
-        <section aria-labelledby="q-meta" className="h-fit rounded-xl border bg-card p-5">
+        <section aria-labelledby="q-meta" className="h-fit rounded-2xl border bg-card shadow-xs p-5">
           <h2 id="q-meta" className="mb-4 font-sans text-base font-semibold">
             Details
           </h2>

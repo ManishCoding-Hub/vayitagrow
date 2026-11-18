@@ -39,10 +39,10 @@ export function SearchInput({ placeholder = "Search…" }: { placeholder?: strin
   }
 
   return (
-    <div className="relative w-full max-w-xs">
+    <div className="relative w-full sm:max-w-xs">
       <Search
         aria-hidden
-        className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground"
+        className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
       />
       <Input
         type="search"
@@ -51,7 +51,7 @@ export function SearchInput({ placeholder = "Search…" }: { placeholder?: strin
         placeholder={placeholder}
         value={value}
         onChange={(event) => handleChange(event.target.value)}
-        className="pl-8"
+        className="rounded-full bg-card pl-9"
       />
     </div>
   );

@@ -131,7 +131,7 @@ export default async function InventoryPage(props: PageProps<"/dashboard/invento
 
       <DataTablePagination page={page} pathname={PATH} searchParams={searchParams} itemNoun="items" />
 
-      <section aria-labelledby="recent-adjustments" className="rounded-xl border bg-card">
+      <section aria-labelledby="recent-adjustments" className="rounded-2xl border bg-card shadow-xs">
         <h2 id="recent-adjustments" className="border-b p-5 pb-4 font-sans text-base font-semibold">
           Recent adjustments
         </h2>

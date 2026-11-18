@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
  * panel, dashboard overview) - variants via CVA, never reimplemented inline.
  */
 
-const statCardVariants = cva("rounded-xl border bg-card p-5", {
+const statCardVariants = cva("rounded-2xl border bg-card shadow-xs p-5", {
   variants: {
     variant: {
       default: "",

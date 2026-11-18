@@ -98,7 +98,7 @@ export default async function UsersPage() {
         }}
       />
 
-      <section aria-labelledby="login-history" className="rounded-xl border bg-card">
+      <section aria-labelledby="login-history" className="rounded-2xl border bg-card shadow-xs">
         <h2 id="login-history" className="border-b p-5 pb-4 font-sans text-base font-semibold">
           Recent logins
         </h2>

@@ -76,7 +76,7 @@ export function OrderForm({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="max-w-3xl space-y-6">
-      <div className="rounded-xl border bg-card p-5">
+      <div className="rounded-2xl border bg-card shadow-xs p-5">
         <FormField id="order-customer" label="Client" errors={fieldErrors.customerId}>
           <select
             {...fieldAria("order-customer", fieldErrors.customerId)}
@@ -93,7 +93,7 @@ export function OrderForm({
         </FormField>
       </div>
 
-      <fieldset className="rounded-xl border bg-card p-5">
+      <fieldset className="rounded-2xl border bg-card shadow-xs p-5">
         <legend className="sr-only">Order items</legend>
         <div className="mb-4 flex items-center justify-between">
           <p className="font-sans text-sm font-semibold">Items</p>

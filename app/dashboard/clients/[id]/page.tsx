@@ -40,7 +40,7 @@ export default async function ClientDetailPage(props: PageProps<"/dashboard/clie
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <section aria-label="Client information" className="space-y-4 rounded-xl border bg-card p-5">
+        <section aria-label="Client information" className="space-y-4 rounded-2xl border bg-card shadow-xs p-5">
           <div className="flex items-center justify-between">
             <h2 className="font-sans text-base font-semibold">Details</h2>
             <StatusBadge status={customer.status} />
@@ -85,7 +85,7 @@ export default async function ClientDetailPage(props: PageProps<"/dashboard/clie
           </div>
         </section>
 
-        <section aria-labelledby="client-orders" className="rounded-xl border bg-card lg:col-span-2">
+        <section aria-labelledby="client-orders" className="rounded-2xl border bg-card shadow-xs lg:col-span-2">
           <div className="flex items-center justify-between gap-3 border-b p-5 pb-4">
             <h2 id="client-orders" className="font-sans text-base font-semibold">
               Orders
@@ -131,7 +131,7 @@ export default async function ClientDetailPage(props: PageProps<"/dashboard/clie
         </section>
       </div>
 
-      <section aria-labelledby="client-notes" className="rounded-xl border bg-card p-5">
+      <section aria-labelledby="client-notes" className="rounded-2xl border bg-card shadow-xs p-5">
         <h2 id="client-notes" className="mb-4 font-sans text-base font-semibold">
           Internal notes
         </h2>

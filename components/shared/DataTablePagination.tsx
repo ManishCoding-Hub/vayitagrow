@@ -27,11 +27,11 @@ export function DataTablePagination({
 
   const prevDisabled = page.page <= 1;
   const nextDisabled = page.page >= page.pageCount;
-  const linkClass = buttonVariants({ variant: "outline", size: "sm" });
+  const linkClass = buttonVariants({ variant: "outline", size: "default" });
   const disabledClass = "pointer-events-none opacity-50";
 
   return (
-    <nav aria-label="Pagination" className="flex items-center justify-between gap-4">
+    <nav aria-label="Pagination" className="flex flex-wrap items-center justify-between gap-3">
       <p className="text-sm text-muted-foreground">
         Page {page.page} of {page.pageCount} · {page.total} {itemNoun}
       </p>

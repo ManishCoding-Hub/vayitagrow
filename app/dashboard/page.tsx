@@ -63,7 +63,7 @@ export default async function DashboardOverviewPage() {
       <div className="grid gap-4 lg:grid-cols-3">
         <section
           aria-labelledby="recent-orders-heading"
-          className="rounded-xl border bg-card lg:col-span-2"
+          className="rounded-2xl border bg-card shadow-xs lg:col-span-2"
         >
           <div className="flex items-center justify-between gap-4 border-b p-5 pb-4">
             <h2 id="recent-orders-heading" className="font-sans text-base font-semibold">
@@ -101,7 +101,7 @@ export default async function DashboardOverviewPage() {
           </ul>
         </section>
 
-        <section aria-labelledby="low-stock-heading" className="rounded-xl border bg-card">
+        <section aria-labelledby="low-stock-heading" className="rounded-2xl border bg-card shadow-xs">
           <div className="flex items-center justify-between gap-4 border-b p-5 pb-4">
             <h2 id="low-stock-heading" className="font-sans text-base font-semibold">
               Low stock

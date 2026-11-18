@@ -76,7 +76,7 @@ export function QuotationForm({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="max-w-3xl space-y-6">
-      <div className="grid gap-5 rounded-xl border bg-card p-5 sm:grid-cols-2">
+      <div className="grid gap-5 rounded-2xl border bg-card shadow-xs p-5 sm:grid-cols-2">
         <FormField id="q-customer" label="Client" errors={fieldErrors.customerId}>
           <select
             {...fieldAria("q-customer", fieldErrors.customerId)}
@@ -111,7 +111,7 @@ export function QuotationForm({
         </div>
       </div>
 
-      <fieldset className="rounded-xl border bg-card p-5">
+      <fieldset className="rounded-2xl border bg-card shadow-xs p-5">
         <legend className="sr-only">Quotation items</legend>
         <div className="mb-4 flex items-center justify-between">
           <p className="font-sans text-sm font-semibold">Items</p>

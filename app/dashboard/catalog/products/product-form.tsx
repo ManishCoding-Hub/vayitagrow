@@ -138,7 +138,7 @@ export function ProductForm({
   return (
     <form onSubmit={handleSubmit} noValidate className="grid gap-8 lg:grid-cols-3">
       <div className="space-y-5 lg:col-span-2">
-        <div className="rounded-xl border bg-card p-5">
+        <div className="rounded-2xl border bg-card shadow-xs p-5">
           <h2 className="mb-5 font-sans text-sm font-semibold">Basic information</h2>
           <div className="grid gap-5 sm:grid-cols-2">
             <FormField id="p-name" label="Product name" errors={fieldErrors.name}>
@@ -203,7 +203,7 @@ export function ProductForm({
           </div>
         </div>
 
-        <div className="rounded-xl border bg-card p-5">
+        <div className="rounded-2xl border bg-card shadow-xs p-5">
           <h2 className="mb-5 font-sans text-sm font-semibold">Marketing content</h2>
           <div className="space-y-5">
             <FormField
@@ -283,7 +283,7 @@ export function ProductForm({
       </div>
 
       <div className="space-y-5">
-        <div className="rounded-xl border bg-card p-5">
+        <div className="rounded-2xl border bg-card shadow-xs p-5">
           <h2 className="mb-5 font-sans text-sm font-semibold">Images</h2>
           <div className="space-y-5">
             <FormField

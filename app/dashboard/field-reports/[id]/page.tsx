@@ -41,7 +41,7 @@ export default async function FieldReportDetailPage(
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <section aria-label="Visit details" className="rounded-xl border bg-card p-5">
+        <section aria-label="Visit details" className="rounded-2xl border bg-card shadow-xs p-5">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-sans text-base font-semibold">Visit</h2>
             <StatusBadge status={report.status} />
@@ -73,7 +73,7 @@ export default async function FieldReportDetailPage(
           </p>
         </section>
 
-        <section aria-labelledby="report-summary" className="rounded-xl border bg-card p-5 lg:col-span-2">
+        <section aria-labelledby="report-summary" className="rounded-2xl border bg-card shadow-xs p-5 lg:col-span-2">
           <h2 id="report-summary" className="mb-3 font-sans text-base font-semibold">
             Summary
           </h2>

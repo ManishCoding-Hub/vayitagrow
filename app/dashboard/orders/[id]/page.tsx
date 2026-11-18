@@ -49,7 +49,7 @@ export default async function OrderDetailPage(props: PageProps<"/dashboard/order
       />
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <section aria-labelledby="order-items" className="rounded-xl border bg-card lg:col-span-2">
+        <section aria-labelledby="order-items" className="rounded-2xl border bg-card shadow-xs lg:col-span-2">
           <h2 id="order-items" className="border-b p-5 pb-4 font-sans text-base font-semibold">
             Items
           </h2>
@@ -92,7 +92,7 @@ export default async function OrderDetailPage(props: PageProps<"/dashboard/order
         </section>
 
         <div className="space-y-4">
-          <section aria-labelledby="order-payments" className="rounded-xl border bg-card">
+          <section aria-labelledby="order-payments" className="rounded-2xl border bg-card shadow-xs">
             <div className="flex items-center justify-between gap-3 border-b p-5 pb-4">
               <h2 id="order-payments" className="font-sans text-base font-semibold">
                 Payments
@@ -142,7 +142,7 @@ export default async function OrderDetailPage(props: PageProps<"/dashboard/order
             </div>
           </section>
 
-          <section aria-labelledby="order-delivery" className="rounded-xl border bg-card">
+          <section aria-labelledby="order-delivery" className="rounded-2xl border bg-card shadow-xs">
             <div className="flex items-center justify-between gap-3 border-b p-5 pb-4">
               <h2 id="order-delivery" className="font-sans text-base font-semibold">
                 Delivery

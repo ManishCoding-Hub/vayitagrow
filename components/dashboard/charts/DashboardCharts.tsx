@@ -315,7 +315,7 @@ export function DashboardCharts({
   }
 
   return (
-    <section aria-labelledby="analytics-heading" className="rounded-xl border bg-card p-5">
+    <section aria-labelledby="analytics-heading" className="rounded-2xl border bg-card shadow-xs p-5">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 id="analytics-heading" className="font-sans text-base font-semibold">
           Analytics

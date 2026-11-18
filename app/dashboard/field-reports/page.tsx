@@ -69,7 +69,7 @@ export default async function FieldReportsPage(props: PageProps<"/dashboard/fiel
         <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {page.items.map((report) => (
             <li key={report.reportId}>
-              <div className="relative flex h-full flex-col gap-3 rounded-xl border bg-card p-5 transition-[box-shadow,translate] duration-200 hover:-translate-y-0.5 hover:shadow-md">
+              <div className="relative flex h-full flex-col gap-3 rounded-2xl border bg-card shadow-xs p-5 transition-[box-shadow,translate] duration-200 hover:-translate-y-0.5 hover:shadow-md">
                 <Link
                   href={`/dashboard/field-reports/${report.reportId}`}
                   className="absolute inset-0 rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"

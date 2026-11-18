@@ -59,7 +59,7 @@ export default async function FeedbackTicketsPage(props: PageProps<"/dashboard/f
           {page.items.map((ticket) => (
             <li
               key={ticket.feedbackId}
-              className="flex flex-col gap-3 rounded-xl border bg-card p-5 sm:flex-row sm:items-start sm:justify-between"
+              className="flex flex-col gap-3 rounded-2xl border bg-card shadow-xs p-5 sm:flex-row sm:items-start sm:justify-between"
             >
               <div className="min-w-0 space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2">

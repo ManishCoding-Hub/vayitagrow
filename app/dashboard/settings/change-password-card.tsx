@@ -33,7 +33,7 @@ export function ChangePasswordCard() {
   }
 
   return (
-    <section aria-labelledby="change-password" className="rounded-xl border bg-card p-5">
+    <section aria-labelledby="change-password" className="rounded-2xl border bg-card shadow-xs p-5">
       <h2 id="change-password" className="mb-1 flex items-center gap-2 font-sans text-base font-semibold">
         <KeyRound aria-hidden className="size-4 text-brand-600" />
         Change your password

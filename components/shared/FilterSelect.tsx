@@ -45,7 +45,7 @@ export function FilterSelect({
           aria-label={label}
           onChange={(e) => handleChange(e.target.value)}
           className={cn(
-            "h-8 cursor-pointer appearance-none rounded-full border pr-8 pl-3.5 text-sm font-medium transition-colors",
+            "h-9 [@media(pointer:coarse)]:h-11 cursor-pointer appearance-none rounded-full border pr-8 pl-3.5 text-sm font-medium transition-colors",
             "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
             active
               ? "border-transparent bg-primary text-primary-foreground"
