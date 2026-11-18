@@ -1,5 +1,6 @@
 import { ClipboardList, FileText, ShoppingCart, Users } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BrandLogo } from "@/components/shared/BrandLogo";
@@ -31,10 +32,18 @@ export default async function LoginPage(props: PageProps<"/login">) {
   return (
     <main className="grid min-h-screen lg:grid-cols-2">
       {/* Brand panel */}
-      <section className="relative hidden flex-col justify-between overflow-hidden bg-brand-950 p-10 text-white lg:flex">
+      <section className="grain relative hidden flex-col justify-between overflow-hidden bg-brand-950 p-12 text-white lg:flex">
+        <Image
+          src="/images/paddy-mist.webp"
+          alt=""
+          fill
+          priority
+          sizes="50vw"
+          className="object-cover opacity-45"
+        />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(50rem_28rem_at_20%_110%,rgba(42,157,75,0.3),transparent)]"
+          className="absolute inset-0 bg-gradient-to-b from-brand-950/70 via-brand-950/40 to-brand-950"
         />
         <Link
           href="/"
@@ -47,7 +56,7 @@ export default async function LoginPage(props: PageProps<"/login">) {
         </Link>
 
         <div className="relative max-w-md space-y-6">
-          <h1 className="text-3xl leading-snug tracking-tight text-balance">
+          <h1 className="text-headline text-balance">
             One portal for the whole operation
           </h1>
           <p className="text-sm leading-relaxed text-brand-200">
@@ -72,7 +81,7 @@ export default async function LoginPage(props: PageProps<"/login">) {
       </section>
 
       {/* Form panel */}
-      <section className="flex items-center justify-center px-4 py-16 sm:px-6">
+      <section className="flex items-center justify-center bg-cream-50 px-4 py-16 sm:px-6">
         <div className="w-full max-w-sm space-y-8">
           <div className="space-y-2">
             <Link
@@ -84,7 +93,7 @@ export default async function LoginPage(props: PageProps<"/login">) {
                 {company.shortName} Bioorganics
               </span>
             </Link>
-            <h2 className="font-sans text-2xl font-semibold tracking-tight">Portal sign in</h2>
+            <h2 className="text-4xl tracking-tight">Portal sign in</h2>
             <p className="text-sm text-muted-foreground">
               For {company.shortName} staff and administrators.
             </p>
@@ -92,7 +101,7 @@ export default async function LoginPage(props: PageProps<"/login">) {
 
           <LoginForm from={from} />
 
-          <div className="rounded-lg border bg-muted/50 p-4 text-sm leading-relaxed text-muted-foreground">
+          <div className="rounded-2xl border border-brand-900/10 bg-white p-5 text-sm leading-relaxed text-muted-foreground">
             <p className="font-medium text-foreground">Restricted access</p>
             <p className="mt-1">
               This portal is intended for {company.shortName} administrators and staff only. If you

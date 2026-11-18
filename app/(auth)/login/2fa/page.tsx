@@ -24,8 +24,8 @@ export default async function TwoFactorPage({ searchParams }: Props) {
   const from = paramString(await searchParams, "from");
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-4 py-16 sm:px-6">
-      <div className="w-full max-w-sm space-y-8">
+    <main className="flex min-h-screen items-center justify-center bg-cream-50 px-4 py-16 sm:px-6">
+      <div className="w-full max-w-sm space-y-8 rounded-[2rem] border border-brand-900/10 bg-white p-8 shadow-[0_40px_80px_-50px_rgba(5,46,24,0.45)]">
         <div className="space-y-3">
           <Link
             href="/"
@@ -36,7 +36,7 @@ export default async function TwoFactorPage({ searchParams }: Props) {
           </Link>
           <div className="flex items-center gap-2 pt-2">
             <ShieldCheck aria-hidden className="size-5 text-brand-600" />
-            <h1 className="font-sans text-2xl font-semibold tracking-tight">Two-factor verification</h1>
+            <h1 className="text-3xl tracking-tight">Two-factor verification</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Enter the 6-digit code from your authenticator app to finish signing in as{" "}

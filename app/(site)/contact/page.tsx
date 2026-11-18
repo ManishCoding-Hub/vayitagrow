@@ -1,7 +1,7 @@
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import type { Metadata } from "next";
 import { MotionReveal } from "@/components/shared/MotionReveal";
-import { SectionHeading } from "@/components/shared/SectionHeading";
+import { PageHero } from "@/components/shared/PageHero";
 import { company } from "@/lib/config/company";
 import { getProductBySlug } from "@/lib/services/products";
 import { paramString } from "@/lib/url";
@@ -43,26 +43,21 @@ export default async function ContactPage(props: PageProps<"/contact">) {
 
   return (
     <>
-      <section className="border-b bg-brand-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <MotionReveal>
-            <SectionHeading
-              align="left"
-              eyebrow="Contact & Orders"
-              title="Talk to our team"
-              lede="Whether you want to join the dealer network, place an order inquiry, or ask about a product - send a message and we will get back to you."
-            />
-          </MotionReveal>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Contact & Orders"
+        title="Talk to our team"
+        image="/images/wheat-sunset.webp"
+        lede="Whether you want to join the dealer network, place an order inquiry, or ask about a product - send a message and we will get back to you."
+      />
 
-      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+      <section className="bg-cream-50">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <MotionReveal>
             <div className="space-y-4">
               {contactCards.map((card) => (
-                <div key={card.title} className="flex gap-4 rounded-xl border bg-card p-5">
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-100 text-brand-600">
+                <div key={card.title} className="flex gap-4 rounded-3xl border border-brand-900/10 bg-white p-6">
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-white">
                     <card.icon aria-hidden className="size-5" />
                   </div>
                   <div>
@@ -75,7 +70,7 @@ export default async function ContactPage(props: PageProps<"/contact">) {
                   </div>
                 </div>
               ))}
-              <p className="rounded-xl border border-dashed bg-muted/50 p-4 text-xs leading-relaxed text-muted-foreground">
+              <p className="rounded-3xl border border-dashed border-brand-900/20 p-5 text-xs leading-relaxed text-muted-foreground">
                 We operate across {company.operatingStates.join(" and ")}. For dealership
                 inquiries, please mention your district and the territory you can serve.
               </p>
@@ -83,8 +78,8 @@ export default async function ContactPage(props: PageProps<"/contact">) {
           </MotionReveal>
 
           <MotionReveal delay={0.1}>
-            <div className="rounded-2xl border bg-card p-6 sm:p-8">
-              <h2 className="font-sans text-lg font-semibold">Send an inquiry</h2>
+            <div className="rounded-[2rem] border border-brand-900/10 bg-white p-6 shadow-[0_40px_80px_-50px_rgba(5,46,24,0.45)] sm:p-10">
+              <h2 className="text-3xl">Send an inquiry</h2>
               <p className="mt-1 mb-6 text-sm text-muted-foreground">
                 {product
                   ? `Asking about ${product.name} - we have pre-filled part of the message for you.`
@@ -94,6 +89,7 @@ export default async function ContactPage(props: PageProps<"/contact">) {
             </div>
           </MotionReveal>
         </div>
+      </div>
       </section>
     </>
   );
