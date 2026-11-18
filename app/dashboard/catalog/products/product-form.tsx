@@ -187,7 +187,7 @@ export function ProductForm({
             <FormField
               id="p-price"
               label="Base price (₹)"
-              hint="Dealer price used in orders - not shown on the public site."
+              hint="Dealer price used in orders, not shown on the public site."
               errors={fieldErrors.basePrice}
             >
               <Input

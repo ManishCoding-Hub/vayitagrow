@@ -27,7 +27,7 @@ export default async function SettingsPage() {
         description={
           canEdit
             ? "System configuration values used across the portal."
-            : "System configuration (read-only - only administrators can edit)."
+            : "System configuration (read-only; only administrators can edit)."
         }
         actions={<ExportButton entity="settings" />}
       />

@@ -99,7 +99,7 @@ export async function adjustStock(
     return {
       ok: false,
       error: "Validation failed.",
-      fieldErrors: { changeAmount: [`Only ${record.quantity} units in stock - cannot go negative`] },
+      fieldErrors: { changeAmount: [`Only ${record.quantity} units in stock, so the quantity cannot go negative`] },
     };
   }
 

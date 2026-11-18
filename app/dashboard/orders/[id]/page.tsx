@@ -193,7 +193,7 @@ export default async function OrderDetailPage(props: PageProps<"/dashboard/order
               ) : (
                 <p className="text-sm text-muted-foreground">
                   {order.status === "Cancelled"
-                    ? "Order was cancelled - no delivery."
+                    ? "Order was cancelled, so there is no delivery."
                     : "No delivery created for this order yet."}
                 </p>
               )}

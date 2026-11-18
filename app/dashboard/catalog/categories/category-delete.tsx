@@ -22,7 +22,7 @@ export function CategoryDelete({
       )}
       triggerAriaLabel={`Delete ${categoryName}`}
       title={`Delete ${categoryName}?`}
-      description="Categories with products attached cannot be deleted - move the products first."
+      description="Categories with products attached cannot be deleted. Move the products first."
       confirmLabel="Delete category"
       successMessage={`${categoryName} deleted`}
       action={() => deleteCategory(categoryId)}

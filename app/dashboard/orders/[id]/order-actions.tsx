@@ -110,7 +110,7 @@ export function RecordPaymentDialog({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Record payment - order #{orderId}</DialogTitle>
+          <DialogTitle>Record payment for order #{orderId}</DialogTitle>
           <DialogDescription>Outstanding balance: {formatINR(outstanding)}</DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} noValidate className="space-y-5">
@@ -165,7 +165,7 @@ export function CreateDeliveryDialog({ orderId }: { orderId: number }) {
     startTransition(async () => {
       const result = await createDelivery({ orderId, courierName, trackingNum });
       if (result.ok) {
-        toast.success("Delivery created - order marked Shipped");
+        toast.success("Delivery created and order marked Shipped");
         setOpen(false);
         setFieldErrors({});
       } else {
@@ -183,7 +183,7 @@ export function CreateDeliveryDialog({ orderId }: { orderId: number }) {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create delivery - order #{orderId}</DialogTitle>
+          <DialogTitle>Create delivery for order #{orderId}</DialogTitle>
           <DialogDescription>
             Dispatching a delivery moves the order to Shipped.
           </DialogDescription>

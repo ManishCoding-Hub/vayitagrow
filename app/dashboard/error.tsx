@@ -23,7 +23,7 @@ export default function DashboardError({
       <div className="space-y-1">
         <h2 className="font-sans text-lg font-semibold">Something went wrong</h2>
         <p className="max-w-sm text-sm text-muted-foreground">
-          This section failed to load. Try again - if the problem persists, contact the
+          This section failed to load. Try again. If the problem persists, contact the
           administrator.
         </p>
       </div>

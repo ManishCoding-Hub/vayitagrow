@@ -105,7 +105,7 @@ export default async function ProductsCmsPage(props: PageProps<"/dashboard/catal
     <div className="space-y-6">
       <PageHeader
         title="Products"
-        description="The product catalog CMS - changes publish to the public site immediately."
+        description="The product catalog CMS. Changes publish to the public site immediately."
         actions={
           <>
             <ExportButton entity="products" searchParams={searchParams} />

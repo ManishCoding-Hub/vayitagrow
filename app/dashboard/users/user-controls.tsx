@@ -45,7 +45,7 @@ function TempPasswordPanel({ username, password }: { username: string; password:
         </Button>
       </div>
       <p className="text-xs text-muted-foreground">
-        Share it with the account holder directly. It is shown only once — they should change it
+        Share it with the account holder directly. It is shown only once, so they should change it
         after signing in.
       </p>
     </div>
@@ -202,7 +202,7 @@ export function ResetStaffPasswordDialog({ userId, username }: { userId: number;
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Reset password — {username}</DialogTitle>
+          <DialogTitle>Reset password for {username}</DialogTitle>
           <DialogDescription>
             Enter this staff member&apos;s current password and choose a new one.
           </DialogDescription>
@@ -284,7 +284,7 @@ export function RecoverAccountDialog({ userId, username }: { userId: number; use
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Recover account — {username}</DialogTitle>
+          <DialogTitle>Recover account for {username}</DialogTitle>
           <DialogDescription>
             Issues a new temporary password. The old password stops working immediately.
           </DialogDescription>

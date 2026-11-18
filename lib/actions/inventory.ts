@@ -45,7 +45,7 @@ export async function adjustStock(input: StockAdjustmentInput): Promise<ActionRe
       ok: false,
       error: "Validation failed.",
       fieldErrors: {
-        changeAmount: [`Only ${record.quantity} units in stock - cannot go negative`],
+        changeAmount: [`Only ${record.quantity} units in stock, so the quantity cannot go negative`],
       },
     };
   }

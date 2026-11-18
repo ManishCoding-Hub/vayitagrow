@@ -64,7 +64,7 @@ export function AdjustStockDialog({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Adjust stock - {productName}</DialogTitle>
+          <DialogTitle>Adjust stock for {productName}</DialogTitle>
           <DialogDescription>
             Current stock: {currentQuantity} units. Use a positive number for intake and a
             negative number for outgoing or damaged stock.
