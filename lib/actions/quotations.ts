@@ -102,6 +102,23 @@ export async function updateQuotationStatus(
   return { ok: true, data: undefined };
 }
 
+export async function deleteQuotation(quotationId: number): Promise<ActionResult> {
+  const session = await requireRole(ADMIN_ROLES);
+  if (isSupabase) return quotationsPg.deleteQuotation(quotationId, session);
+  await latency();
+
+  const store = db();
+  const quotation = store.quotations.find((q) => q.quotationId === quotationId);
+  if (!quotation) return { ok: false, error: "Quotation not found." };
+
+  store.quotationItems = store.quotationItems.filter((i) => i.quotationId !== quotationId);
+  store.quotations = store.quotations.filter((q) => q.quotationId !== quotationId);
+
+  recordActivity(session.userId, "DELETE", "QUOTATION", quotationId);
+  revalidatePath("/dashboard/quotations");
+  return { ok: true, data: undefined };
+}
+
 export async function sendQuotationToStaff(
   quotationId: number,
   staffId: number,

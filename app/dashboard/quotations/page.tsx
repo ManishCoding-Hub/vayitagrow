@@ -17,6 +17,7 @@ import { getQuotations } from "@/lib/services/quotations";
 import { QUOTATION_STATUSES, type QuotationStatus } from "@/lib/types/database";
 import type { QuotationWithCustomer } from "@/lib/types/quotation";
 import { paramNumber, paramString } from "@/lib/url";
+import { QuotationDelete } from "./quotation-delete";
 
 export const metadata: Metadata = { title: "Quotations" };
 
@@ -105,6 +106,18 @@ export default async function QuotationsPage({ searchParams: sp }: Props) {
       header: "Status",
       cell: (q) => <StatusBadge status={q.status} />,
     },
+    ...(canManage
+      ? [
+          {
+            key: "actions",
+            header: <span className="sr-only">Actions</span>,
+            className: "w-12 text-right",
+            cell: (q: QuotationWithCustomer) => (
+              <QuotationDelete quotationId={q.quotationId} quotationNumber={q.quotationNumber} />
+            ),
+          },
+        ]
+      : []),
   ];
 
   return (

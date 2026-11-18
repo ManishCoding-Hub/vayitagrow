@@ -155,6 +155,27 @@ export async function updateQuotationStatus(
   return { ok: true, data: undefined };
 }
 
+export async function deleteQuotation(
+  quotationId: number,
+  session: SessionUser,
+): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM quotations WHERE quotation_id = $1", [quotationId]))) {
+    return { ok: false, error: "Quotation not found." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    // quotation_items cascade via FK.
+    await c.query("DELETE FROM quotations WHERE quotation_id = $1", [quotationId]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'QUOTATION', $2)",
+      [session.userId, quotationId],
+    );
+  });
+
+  revalidateQuotationRoutes();
+  return { ok: true, data: undefined };
+}
+
 export async function sendQuotationToStaff(
   quotationId: number,
   staffId: number,
