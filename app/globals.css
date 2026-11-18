@@ -221,3 +221,16 @@ html {
     animation: none !important;
   }
 }
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.hero-progress {
+  animation: hero-progress linear forwards;
+}

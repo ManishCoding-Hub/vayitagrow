@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { BrandLogo } from "@/components/shared/BrandLogo";
 import { company } from "@/lib/config/company";
@@ -80,12 +81,23 @@ export function Footer() {
           </div>
         </div>
 
-        <p
+        <div
           aria-hidden
-          className="mt-16 -mb-[0.18em] font-display text-[clamp(4rem,19vw,17rem)] leading-none font-semibold tracking-tighter text-white/[0.06] select-none"
+          className="mt-16 flex items-end gap-[0.25em] text-[clamp(2.5rem,15vw,13rem)] text-white opacity-[0.06] select-none"
         >
-          {company.shortName}
-        </p>
+          <span className="relative mb-[0.12em] block h-[0.72em] shrink-0 aspect-[3/2]">
+            <Image
+              src="/vayitagrow_logo.svg"
+              alt=""
+              fill
+              unoptimized
+              className="object-contain brightness-0 invert"
+            />
+          </span>
+          <span className="-mb-[0.18em] font-display leading-none font-semibold tracking-tighter">
+            {company.shortName}
+          </span>
+        </div>
 
         <div className="relative flex flex-wrap items-center justify-between gap-3 border-t border-white/10 py-6">
           <p className="text-xs text-brand-300">

@@ -1,86 +1,155 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 /**
- * Hero product slideshow: crossfades through the catalog in a random order.
- * Reduced motion shows a single static product with no auto-advance.
+ * Hero "pack stage": one product at a time floating over a soft glow, with a
+ * ghosted index, clickable progress ticks and a mouse-only tilt. Auto-advance
+ * is driven by the active tick's CSS progress animation (no timers), pauses on
+ * hover/focus, and is off entirely for reduced motion.
  */
 
 export type HeroSlide = { src: string; name: string; categoryName: string };
 
-function shuffle<T>(items: T[]): T[] {
-  const copy = [...items];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
 const EASE = [0.22, 1, 0.36, 1] as const;
+const pad = (n: number) => String(n).padStart(2, "0");
 
 export function HeroSlideshow({
   slides,
-  intervalMs = 4200,
+  intervalMs = 4800,
 }: {
   slides: HeroSlide[];
   intervalMs?: number;
 }) {
   const reduce = useReducedMotion();
-  // Deterministic order for SSR + first client paint (avoids a hydration
-  // mismatch); the randomised order and rotation kick in after mount.
-  const [order, setOrder] = useState<HeroSlide[]>(slides);
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
-  useEffect(() => {
-    if (reduce || slides.length <= 1) return;
-    setOrder(shuffle(slides));
-    setIndex(0);
-    const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), intervalMs);
-    return () => clearInterval(id);
-  }, [reduce, slides, intervalMs]);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const rotateY = useSpring(useTransform(pointerX, [-0.5, 0.5], [-12, 12]), { stiffness: 140, damping: 16 });
+  const rotateX = useSpring(useTransform(pointerY, [-0.5, 0.5], [10, -10]), { stiffness: 140, damping: 16 });
 
-  if (order.length === 0) return null;
-  const current = order[index];
+  if (slides.length === 0) return null;
+  const current = slides[index];
+  const autoplay = !reduce && slides.length > 1;
+  const next = () => setIndex((i) => (i + 1) % slides.length);
 
   return (
-    <div className="relative mx-auto flex h-105 w-full max-w-md items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-white/5">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current.src}
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.94 }}
-          transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={current.src}
-            alt={`${current.name} product pack`}
-            fill
-            priority
-            className="object-contain p-10 drop-shadow-2xl"
-            sizes="(max-width: 1024px) 0px, 28rem"
-          />
-        </motion.div>
-      </AnimatePresence>
+    <div
+      role="group"
+      aria-roledescription="carousel"
+      aria-label="Featured products"
+      className="relative mx-auto w-full max-w-md"
+      onPointerEnter={(event) => event.pointerType === "mouse" && setPaused(true)}
+      onPointerLeave={(event) => {
+        if (event.pointerType === "mouse") setPaused(false);
+        pointerX.set(0);
+        pointerY.set(0);
+      }}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -top-10 right-0 z-0 font-display text-[9rem] leading-none text-white/[0.08] select-none"
+      >
+        {pad(index + 1)}
+      </span>
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2">
+      <div
+        className="relative z-10 h-[27rem] [perspective:1000px]"
+        onPointerMove={(event) => {
+          if (reduce || event.pointerType !== "mouse") return;
+          const box = event.currentTarget.getBoundingClientRect();
+          pointerX.set((event.clientX - box.left) / box.width - 0.5);
+          pointerY.set((event.clientY - box.top) / box.height - 0.5);
+        }}
+      >
+        <div
+          aria-hidden
+          className="absolute top-1/2 left-1/2 size-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(88,180,120,0.45),rgba(88,180,120,0)_68%)]"
+        />
         <AnimatePresence mode="wait">
-          <motion.p
-            key={`${current.src}-caption`}
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: reduce ? 0 : 0.4, ease: EASE }}
-            className="whitespace-nowrap rounded-full bg-brand-900/80 px-4 py-1.5 text-xs font-medium tracking-wide text-brand-200"
+          <motion.div
+            key={current.src}
+            initial={reduce ? false : { opacity: 0, y: 48, scale: 0.9, rotate: -5 }}
+            animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, y: -36, scale: 0.94, rotate: 4 }}
+            transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}
+            style={reduce ? undefined : { rotateX, rotateY }}
+            className="absolute inset-0"
           >
-            {current.name} · {current.categoryName}
-          </motion.p>
+            <motion.div
+              animate={reduce ? undefined : { y: [0, -12, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative size-full"
+            >
+              <Image
+                src={current.src}
+                alt={`${current.name} product pack`}
+                fill
+                priority={index === 0}
+                sizes="28rem"
+                className="object-contain p-6 drop-shadow-[0_40px_40px_rgba(0,0,0,0.45)]"
+              />
+            </motion.div>
+          </motion.div>
         </AnimatePresence>
+      </div>
+
+      <div className="relative z-10 mt-4 space-y-4">
+        <div aria-live="polite" className="flex items-end justify-between gap-4">
+          <div className="min-w-0">
+            <p className="inline-flex rounded-full border border-white/25 px-3 py-1 text-[0.7rem] font-medium tracking-wide text-brand-100">
+              {current.categoryName}
+            </p>
+            <p className="mt-2 truncate font-display text-3xl text-white">{current.name}</p>
+          </div>
+          <p className="shrink-0 pb-1 text-xs tracking-[0.2em] text-brand-200 tabular-nums">
+            {pad(index + 1)} / {pad(slides.length)}
+          </p>
+        </div>
+
+        <div className="flex gap-1.5">
+          {slides.map((slide, i) => (
+            <button
+              key={slide.src}
+              type="button"
+              aria-label={`Show ${slide.name}`}
+              aria-current={i === index}
+              onClick={() => setIndex(i)}
+              className="group flex-1 rounded-full py-2 focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:outline-none"
+            >
+              <span className="relative block h-[3px] overflow-hidden rounded-full bg-white/20">
+                {i < index || (i === index && !autoplay) ? (
+                  <span className="absolute inset-0 bg-white/70" />
+                ) : null}
+                {i === index && autoplay ? (
+                  <span
+                    key={index}
+                    style={{ animationDuration: `${intervalMs}ms` }}
+                    onAnimationEnd={next}
+                    className={cn(
+                      "hero-progress absolute inset-0 origin-left bg-gold-300",
+                      paused && "[animation-play-state:paused]",
+                    )}
+                  />
+                ) : null}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

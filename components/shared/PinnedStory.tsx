@@ -3,7 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 export interface StoryStep {
@@ -31,7 +31,9 @@ export function PinnedStory({
   const root = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
 
-  useEffect(() => {
+  // Layout effect on purpose: its cleanup must un-wrap GSAP's pin-spacer
+  // before React removes the section, or removeChild throws on navigation.
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
     media.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
@@ -84,7 +86,13 @@ export function PinnedStory({
                   </div>
                 </div>
                 <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-xl lg:hidden">
-                  <Image src={step.image} alt={step.imageAlt} fill sizes="100vw" className="object-cover" />
+                  <Image
+                    src={step.image}
+                    alt={step.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 1px, 100vw"
+                    className="object-cover"
+                  />
                 </div>
               </li>
             ))}
