@@ -1,7 +1,7 @@
 /**
  * Single source of truth for company facts shown anywhere on the site.
  *
- * Facts below marked PLACEHOLDER are pending delivery from the client
+ * Facts below marked PLACEHOLDER (registered address) are pending delivery from the client
  * (Rajiv Pal / Manish) and must be replaced before production launch.
  * Everything else is verifiable from docs/project_details/.
  */
@@ -19,12 +19,8 @@ export const company = {
   contact: {
     // PLACEHOLDER - full registered address (Jharkhand) pending from client.
     addressLines: ["Registered Office", "Jharkhand, India"],
-    // PLACEHOLDER - office landline pending from client.
-    landline: "+91 00000 00000",
-    // PLACEHOLDER - business mobile numbers pending from client.
-    mobile: "+91 00000 00000",
-    // PLACEHOLDER - official email pending from client.
-    email: "info@vayitagrow.com",
+    mobiles: ["+91 96096 02539", "+91 74318 17917"],
+    email: "vayitagrowbio.organics@gmail.com",
     hours: "Monday - Saturday, 9:00 AM - 6:00 PM IST",
   },
 } as const;

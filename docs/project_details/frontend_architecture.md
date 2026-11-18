@@ -43,7 +43,7 @@ components/
 │               ProductCard
 └── ui/         shadcn (base-nova / Base UI) primitives, token-themed
 lib/
-├── config/     company.ts (facts + PLACEHOLDER contacts), navigation.ts, site.ts, marketing.ts
+├── config/     company.ts (facts + contacts), navigation.ts, site.ts, marketing.ts
 ├── types/      domain types mirroring the DB design (ERD v1.2.0) + EXTENSION domains
 ├── mock/       in-memory MockDb (globalThis-cached) + seeds; REAL product data in seed/catalog.ts
 ├── services/   async READ API - pages import only this          ← Supabase swap seam

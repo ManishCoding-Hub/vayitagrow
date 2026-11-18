@@ -157,7 +157,7 @@ export function QuotationPdfButton({ quotation }: { quotation: QuotationPdfData 
       doc.setFontSize(8);
       doc.setTextColor(150, 158, 153);
       doc.text(
-        `${company.contact.landline} · ${company.contact.email} · Computer-generated quotation`,
+        `${company.contact.mobiles.join(" / ")} · ${company.contact.email} · Computer-generated quotation`,
         pageWidth / 2,
         doc.internal.pageSize.getHeight() - 24,
         { align: "center" },

@@ -27,7 +27,7 @@ export default async function ContactPage(props: PageProps<"/contact">) {
     {
       icon: Phone,
       title: "Phone",
-      lines: [`Landline: ${company.contact.landline}`, `Mobile: ${company.contact.mobile}`],
+      lines: [...company.contact.mobiles],
     },
     {
       icon: Mail,

@@ -62,15 +62,17 @@ export function Footer() {
                 <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-brand-400" />
                 <span>{company.contact.addressLines.join(", ")}</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone aria-hidden className="size-4 shrink-0 text-brand-400" />
-                <a
-                  href={`tel:${company.contact.landline.replaceAll(" ", "")}`}
-                  className="rounded-sm hover:text-white focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
-                >
-                  {company.contact.landline}
-                </a>
-              </li>
+              {company.contact.mobiles.map((mobile) => (
+                <li key={mobile} className="flex items-center gap-2">
+                  <Phone aria-hidden className="size-4 shrink-0 text-brand-400" />
+                  <a
+                    href={`tel:${mobile.replaceAll(" ", "")}`}
+                    className="rounded-sm hover:text-white focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
+                  >
+                    {mobile}
+                  </a>
+                </li>
+              ))}
               <li className="flex items-center gap-2">
                 <Mail aria-hidden className="size-4 shrink-0 text-brand-400" />
                 <a
