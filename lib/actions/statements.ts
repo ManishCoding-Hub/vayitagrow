@@ -55,3 +55,20 @@ export async function createStatement(
   revalidatePath("/dashboard");
   return { ok: true, data: { id: statementId } };
 }
+
+export async function deleteStatement(id: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return statementsPg.deleteStatement(id, session);
+  await latency();
+
+  const store = db();
+  const statement = store.statements.find((s) => s.statementId === id);
+  if (!statement) return { ok: false, error: "Statement not found." };
+
+  store.statements = store.statements.filter((s) => s.statementId !== id);
+
+  recordActivity(session.userId, "DELETE", "SYSTEM", id);
+  revalidatePath("/dashboard/statements");
+  revalidatePath("/dashboard");
+  return { ok: true, data: undefined };
+}

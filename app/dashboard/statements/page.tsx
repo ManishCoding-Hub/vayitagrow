@@ -11,6 +11,7 @@ import { getCustomerOptions } from "@/lib/services/customers";
 import { getStatements } from "@/lib/services/statements";
 import type { StatementWithCustomer } from "@/lib/types/statement";
 import { paramNumber, paramString } from "@/lib/url";
+import { StatementDelete } from "./statement-delete";
 import { StatementDialog } from "./statement-dialog";
 
 export const metadata: Metadata = { title: "Statements" };
@@ -61,6 +62,17 @@ export default async function StatementsPage(props: PageProps<"/dashboard/statem
           <p>{formatDate(statement.uploadDate)}</p>
           <p className="text-xs text-muted-foreground">by {statement.uploadedByUsername}</p>
         </div>
+      ),
+    },
+    {
+      key: "actions",
+      header: <span className="sr-only">Actions</span>,
+      className: "w-12 text-right",
+      cell: (statement) => (
+        <StatementDelete
+          statementId={statement.statementId}
+          statementNumber={statement.statementNumber}
+        />
       ),
     },
   ];

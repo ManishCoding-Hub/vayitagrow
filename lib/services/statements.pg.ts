@@ -64,3 +64,21 @@ export async function createStatement(
   revalidatePath("/dashboard");
   return { ok: true, data: { id } };
 }
+
+export async function deleteStatement(id: number, session: SessionUser): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM statements WHERE statement_id = $1", [id]))) {
+    return { ok: false, error: "Statement not found." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    await c.query("DELETE FROM statements WHERE statement_id = $1", [id]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'SYSTEM', $2)",
+      [session.userId, id],
+    );
+  });
+
+  revalidatePath("/dashboard/statements");
+  revalidatePath("/dashboard");
+  return { ok: true, data: undefined };
+}
