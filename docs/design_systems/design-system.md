@@ -153,3 +153,15 @@ Components adapt, not shrink: tables gain horizontal-scroll containers on small 
   dialogs. Password inputs follow the standard `FormField` pattern.
 - All new controls use the existing tokens, `Button`/`Input`/`Dialog` primitives,
   lucide icons, and light-theme-only styling.
+
+## 13. Public-site editorial layer (2026-11 revamp)
+
+Scope: public pages, login/2FA, header, footer, 404. The dashboard keeps the section 1-12 language.
+
+- **Direction**: editorial and photographic. Dark forest hero openers (`brand-950` + a photo at 30-50% opacity + gradient), alternating with warm paper sections (`cream-50`/`cream-100`, `brand-50`). Gold stays the single accent (eyebrows, active-link underline, progress bar).
+- **Type**: Fraunces for display, Inter for body (unchanged). New fluid utilities in `globals.css`: `text-display` (hero, up to 5.5rem) and `text-headline` (section titles, up to 4.25rem). Eyebrows are 0.75rem, `tracking-[0.3em]`, uppercase.
+- **Shape**: large radii on the public site (`rounded-3xl` cards, `rounded-[2rem]` panels, `rounded-full` buttons).
+- **Texture**: `grain` utility (SVG noise overlay) on dark sections.
+- **Motion language**: calm-cinematic. Smooth scroll (Lenis, synced to GSAP ticker), word-mask headline reveals (`SplitReveal`), parallax photos (`ParallaxImage`), a pinned scroll-driven story (`PinnedStory`, GSAP ScrollTrigger, desktop only), category `Marquee`, magnetic primary CTAs (`Magnetic`), gold `ScrollProgress` bar, header that hides on scroll-down. Only transform/opacity/clip-path animate. Everything collapses under `prefers-reduced-motion` (no Lenis, no pin, plain text, static marquee).
+- **Header**: fixed; transparent with white text over each page's dark hero, solid blurred surface after 24px of scroll. Every public page therefore opens with a dark band (`PageHero` or a custom hero) with at least 8rem of top padding.
+- **Imagery**: self-hosted Unsplash photos in `public/images/` (WebP, credited in `image-credits.md`). Generic agricultural scenes only; never captioned as company assets and never shown as customers or staff.

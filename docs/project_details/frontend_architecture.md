@@ -87,7 +87,7 @@ Dashboard (all session-gated, noindex): overview · clients (+`[id]`) · orders
 - All colors flow through tokens in `app/globals.css`; status colors only via
   `StatusBadge`; chart colors via `--chart-*`. See docs/design_systems/design-system.md.
 - Icons: lucide-react only. No emojis.
-- Motion: `MotionReveal`/`AnimatedNumber` (motion library), reduced-motion safe.
+- Motion: `MotionReveal`/`AnimatedNumber` (motion library), reduced-motion safe. Public-site extras: `components/shared/SmoothScroll.tsx` (Lenis + GSAP ticker, mounted in `app/(site)/layout.tsx` only), `components/shared/motion/` (`SplitReveal`, `ParallaxImage`, `Magnetic`, `Marquee`, `ScrollProgress`), `PageHero`, and `PinnedStory` (GSAP ScrollTrigger). See design-system.md section 13.
 
 ## Verification snapshot (2026-07-05)
 
