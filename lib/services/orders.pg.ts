@@ -187,6 +187,25 @@ export async function updateOrderStatus(
   return { ok: true, data: undefined };
 }
 
+export async function deleteOrder(orderId: number, session: SessionUser): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM orders WHERE order_id = $1", [orderId]))) {
+    return { ok: false, error: "Order not found." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    // order_items, payments, deliveries (→ delivery_updates) cascade via FK.
+    await c.query("DELETE FROM orders WHERE order_id = $1", [orderId]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'ORDER', $2)",
+      [session.userId, orderId],
+    );
+  });
+
+  revalidateOrderRoutes();
+  revalidatePath("/dashboard/deliveries");
+  return { ok: true, data: undefined };
+}
+
 export async function recordPayment(
   data: PaymentInput,
   session: SessionUser,

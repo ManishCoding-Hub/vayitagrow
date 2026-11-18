@@ -15,6 +15,7 @@ import { getOrders } from "@/lib/services/orders";
 import { ORDER_STATUSES, type OrderStatus } from "@/lib/types/database";
 import type { OrderWithCustomer } from "@/lib/types/order";
 import { paramNumber, paramString } from "@/lib/url";
+import { OrderDelete } from "./order-delete";
 
 export const metadata: Metadata = { title: "Orders" };
 
@@ -85,6 +86,12 @@ export default async function OrdersPage(props: PageProps<"/dashboard/orders">) 
       key: "status",
       header: "Status",
       cell: (order) => <StatusBadge status={order.status} />,
+    },
+    {
+      key: "actions",
+      header: <span className="sr-only">Actions</span>,
+      className: "w-12 text-right",
+      cell: (order) => <OrderDelete orderId={order.orderId} />,
     },
   ];
 

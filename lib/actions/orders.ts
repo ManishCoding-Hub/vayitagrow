@@ -107,6 +107,32 @@ export async function updateOrderStatus(
   return { ok: true, data: undefined };
 }
 
+export async function deleteOrder(orderId: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return ordersPg.deleteOrder(orderId, session);
+  await latency();
+
+  const store = db();
+  const order = store.orders.find((o) => o.orderId === orderId);
+  if (!order) return { ok: false, error: "Order not found." };
+
+  const deliveryIds = store.deliveries
+    .filter((d) => d.orderId === orderId)
+    .map((d) => d.deliveryId);
+  store.deliveryUpdates = store.deliveryUpdates.filter(
+    (u) => !deliveryIds.includes(u.deliveryId),
+  );
+  store.deliveries = store.deliveries.filter((d) => d.orderId !== orderId);
+  store.payments = store.payments.filter((p) => p.orderId !== orderId);
+  store.orderItems = store.orderItems.filter((i) => i.orderId !== orderId);
+  store.orders = store.orders.filter((o) => o.orderId !== orderId);
+
+  recordActivity(session.userId, "DELETE", "ORDER", orderId);
+  revalidateOrderRoutes();
+  revalidatePath("/dashboard/deliveries");
+  return { ok: true, data: undefined };
+}
+
 const paymentSchema = z.object({
   orderId: z.number().int().positive(),
   amount: z.number().positive("Amount must be positive"),
