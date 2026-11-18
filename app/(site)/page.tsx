@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Leaf } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
@@ -135,14 +135,14 @@ export default async function HomePage() {
 
       {/* Category marquee */}
       {activeCategories.length > 0 ? (
-        <section aria-label="Product categories" className="overflow-hidden border-b bg-cream-50 py-8">
+        <section aria-label="Product categories" className="overflow-hidden border-b bg-cream-50 py-6">
           <Marquee>
             {activeCategories.map((category) => (
               <span key={category.categoryId} className="flex items-center">
-                <span className="font-display px-8 text-4xl whitespace-nowrap text-brand-900 sm:text-6xl">
+                <span className="font-display py-3 pr-8 pl-8 text-4xl leading-[1.3] whitespace-nowrap text-brand-900 sm:text-6xl sm:leading-[1.3]">
                   {category.categoryName}
                 </span>
-                <span aria-hidden className="size-2.5 rounded-full bg-gold-500" />
+                <Leaf aria-hidden className="size-6 shrink-0 -rotate-12 text-gold-500 sm:size-8" strokeWidth={1.5} />
               </span>
             ))}
           </Marquee>
