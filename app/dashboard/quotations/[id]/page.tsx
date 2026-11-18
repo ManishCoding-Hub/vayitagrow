@@ -96,7 +96,7 @@ export default async function QuotationDetailPage({ params }: Props) {
               <TableHeader>
                 <TableRow>
                   <TableHead>Product</TableHead>
-                  <TableHead>SKU</TableHead>
+                  <TableHead className="hidden sm:table-cell">SKU</TableHead>
                   <TableHead className="text-right">Qty</TableHead>
                   <TableHead className="text-right">Unit price</TableHead>
                   <TableHead className="text-right">Line total</TableHead>
@@ -106,7 +106,7 @@ export default async function QuotationDetailPage({ params }: Props) {
                 {quotation.items.map((item) => (
                   <TableRow key={item.itemId}>
                     <TableCell className="font-medium">{item.productName}</TableCell>
-                    <TableCell className="text-muted-foreground">{item.sku}</TableCell>
+                    <TableCell className="hidden text-muted-foreground sm:table-cell">{item.sku}</TableCell>
                     <TableCell className="text-right tabular-nums">
                       {formatNumber(item.quantity)}
                     </TableCell>
