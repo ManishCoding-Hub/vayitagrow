@@ -2,6 +2,7 @@
 
 import { ChevronDown, ExternalLink, LogOut, Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { BrandLogo } from "@/components/shared/BrandLogo";
@@ -18,27 +19,34 @@ import {
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { logoutDemo } from "@/lib/actions/auth";
 import { company } from "@/lib/config/company";
+import { dashboardNav } from "@/lib/config/navigation";
 import { enumLabel } from "@/lib/types/database";
 import type { SessionUser } from "@/lib/types/user";
 import { cn } from "@/lib/utils";
 
 export function DashboardTopbar({ user }: { user: SessionUser }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const pageLabel =
+    dashboardNav
+      .flatMap((group) => group.links)
+      .filter((link) => (link.href === "/dashboard" ? pathname === link.href : pathname.startsWith(link.href)))
+      .sort((a, b) => b.href.length - a.href.length)[0]?.label ?? "Dashboard";
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-3 border-b bg-background/90 px-4 backdrop-blur lg:px-6">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-3 border-b bg-background/85 px-4 backdrop-blur-xl sm:px-6 lg:px-8">
       <div className="flex items-center gap-2">
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger
-            className={cn(buttonVariants({ variant: "outline", size: "icon-lg" }), "lg:hidden")}
+            className={cn(buttonVariants({ variant: "outline", size: "icon-lg" }), "size-11 lg:hidden")}
             aria-label="Open navigation"
           >
             <Menu aria-hidden className="size-5" />
           </SheetTrigger>
-          <SheetContent side="left" className="w-72 overflow-y-auto p-0">
-            <SheetHeader className="border-b">
-              <SheetTitle className="flex items-center gap-2 text-left">
-                <BrandLogo height={28} />
+          <SheetContent side="left" className="w-[18rem] max-w-[85vw] overflow-y-auto border-0 bg-brand-950 p-0 pb-[env(safe-area-inset-bottom)] text-white [&_button]:text-white [&_button:hover]:bg-white/10">
+            <SheetHeader className="border-b border-white/10">
+              <SheetTitle className="flex items-center gap-2 text-left text-white">
+                <BrandLogo height={28} inverted />
                 {company.shortName} Portal
               </SheetTitle>
             </SheetHeader>
@@ -46,22 +54,17 @@ export function DashboardTopbar({ user }: { user: SessionUser }) {
           </SheetContent>
         </Sheet>
 
-        <Link
-          href="/dashboard"
-          className="hidden items-center gap-2 rounded-md lg:flex focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-        >
-          <BrandLogo height={30} />
-          <span className="font-display text-base font-semibold">
-            {company.shortName} <span className="font-sans text-sm font-medium text-muted-foreground">Portal</span>
-          </span>
-        </Link>
+        <div className="min-w-0 leading-tight">
+          <p className="hidden text-xs text-muted-foreground sm:block">{company.shortName} Portal</p>
+          <p className="truncate font-display text-lg font-semibold tracking-tight">{pageLabel}</p>
+        </div>
       </div>
 
       <DropdownMenu>
         <DropdownMenuTrigger
-          className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "gap-2 px-2")}
+          className={cn(buttonVariants({ variant: "ghost", size: "lg" }), "h-11 gap-2 rounded-full px-2")}
         >
-          <span className="flex size-7 items-center justify-center rounded-full bg-brand-100 text-xs font-semibold text-brand-700 uppercase">
+          <span className="flex size-8 items-center justify-center rounded-full bg-brand-600 text-xs font-semibold text-white uppercase">
             {user.username.slice(0, 2)}
           </span>
           <span className="hidden text-left sm:block">

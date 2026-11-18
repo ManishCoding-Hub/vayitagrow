@@ -24,16 +24,16 @@ export function DashboardSidebar({
     href === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(href);
 
   return (
-    <nav aria-label="Dashboard" className="flex flex-col gap-6 p-4">
+    <nav aria-label="Dashboard" className="flex flex-col gap-7 px-3 py-5">
       {dashboardNav.map((group) => {
         const links = group.links.filter((link) => !link.roles || link.roles.includes(role));
         if (links.length === 0) return null;
         return (
           <div key={group.label}>
-            <p className="px-3 pb-2 text-[0.68rem] font-semibold tracking-wider text-muted-foreground uppercase">
+            <p className="px-3 pb-2 text-[0.68rem] font-semibold tracking-[0.2em] text-gold-300/80 uppercase">
               {group.label}
             </p>
-            <ul className="space-y-0.5">
+            <ul className="space-y-1">
               {links.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -41,14 +41,14 @@ export function DashboardSidebar({
                     onClick={onNavigate}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
-                      "flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                      "focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+                      "relative flex min-h-11 items-center gap-3 rounded-xl px-3 text-sm font-medium transition-colors",
+                      "focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none",
                       isActive(link.href)
-                        ? "bg-brand-100 text-brand-700"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                        ? "bg-white/10 text-white before:absolute before:top-2.5 before:bottom-2.5 before:left-0 before:w-0.5 before:rounded-full before:bg-gold-300"
+                        : "text-brand-200 hover:bg-white/5 hover:text-white",
                     )}
                   >
-                    <link.icon aria-hidden className="size-4 shrink-0" />
+                    <link.icon aria-hidden className="size-[1.1rem] shrink-0" />
                     {link.label}
                   </Link>
                 </li>
