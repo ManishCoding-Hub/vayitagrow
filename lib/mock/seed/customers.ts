@@ -25,5 +25,5 @@ export const seedCustomerNotes: CustomerNote[] = [
   { noteId: 1, customerId: 1, createdBy: 2, createdByUsername: "manish", noteText: "Long-standing Kolkata distributor. Prefers quarterly consolidated statements. Interested in stocking JYME-VITA from next season.", createdAt: "2026-04-10T10:30:00.000Z" },
   { noteId: 2, customerId: 8, createdBy: 2, createdByUsername: "manish", noteText: "Anchor dealer for the Ranchi region. Requested dealer training session for VEER-P application before kharif sowing.", createdAt: "2026-05-02T08:15:00.000Z" },
   { noteId: 3, customerId: 6, createdBy: 3, createdByUsername: "sourav.field", noteText: "New dealer onboarded after Malda field visit. Initial order focused on V-BOOST and V-FIX for mango orchard customers.", createdAt: "2026-05-14T11:00:00.000Z" },
-  { noteId: 4, customerId: 10, createdBy: 2, createdByUsername: "manish", noteText: "Account inactive since March - proprietor renovating shop premises. Follow up in August before festive season demand.", createdAt: "2026-06-08T09:45:00.000Z" },
+  { noteId: 4, customerId: 10, createdBy: 2, createdByUsername: "manish", noteText: "Account inactive since March because the proprietor is renovating shop premises. Follow up in August before festive season demand.", createdAt: "2026-06-08T09:45:00.000Z" },
 ];

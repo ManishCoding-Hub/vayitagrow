@@ -48,7 +48,7 @@ const PUBLIC_FEEDBACK: PublicFeedbackEntry[] = [
     role: "farmer",
     email: "gopal.h@example.com",
     message:
-      "Used VEER-L on my vegetable plots this season — noticeably stronger growth. Would like smaller pack sizes.",
+      "Used VEER-L on my vegetable plots this season, with noticeably stronger growth. Would like smaller pack sizes.",
     createdAt: "2026-07-06T11:20:00.000Z",
   },
   {

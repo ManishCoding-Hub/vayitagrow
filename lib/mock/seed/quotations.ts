@@ -70,7 +70,7 @@ export const seedQuotations: SeedQuotation[] = [
     assignedStaffId: 3,
     status: "Rejected",
     validUntil: "2026-06-30",
-    notes: "Malda mango orchard proposal - dealer sourced locally this season.",
+    notes: "Malda mango orchard proposal, with the dealer sourcing locally this season.",
     createdAt: "2026-06-12T11:00:00.000Z",
     items: [
       { productId: 4, quantity: 35 },

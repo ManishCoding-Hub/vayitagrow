@@ -59,7 +59,7 @@ export const seedFieldReports: FieldReport[] = [
   },
   {
     reportId: 8, visitDate: "2026-07-02", customerId: 7, dealerName: "Nadia Agri Traders", location: "Krishnanagar, West Bengal",
-    summary: "Pre-season planning visit for flower growers around Ranaghat. Recommended VITA-A plus V-BOOST program for marigold and tuberose plots. Dealer requested credit-period revision - forwarded to admin for decision.",
+    summary: "Pre-season planning visit for flower growers around Ranaghat. Recommended VITA-A plus V-BOOST program for marigold and tuberose plots. Dealer requested credit-period revision, which was forwarded to admin for decision.",
     status: "Follow_Up_Required", createdBy: 3, createdByUsername: "sourav.field", createdAt: "2026-07-02T11:20:00.000Z",
   },
 ];
