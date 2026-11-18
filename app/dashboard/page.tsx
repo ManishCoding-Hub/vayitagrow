@@ -129,7 +129,7 @@ export default async function DashboardOverviewPage() {
                     <p className="truncate text-sm font-medium">{item.productName}</p>
                     <p className="text-xs text-muted-foreground">{item.sku}</p>
                   </div>
-                  <span className="shrink-0 rounded-full bg-status-warning-soft px-2.5 py-0.5 text-xs font-semibold text-status-warning">
+                  <span className="shrink-0 text-sm font-semibold text-status-warning tabular-nums">
                     {formatNumber(item.quantity)} left
                   </span>
                 </li>

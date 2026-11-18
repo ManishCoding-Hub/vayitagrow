@@ -63,7 +63,7 @@ export default async function PublicFeedbackPage(
             <li key={entry.feedbackId} className="rounded-2xl border bg-card shadow-xs p-5">
               <div className="flex flex-wrap items-center gap-2">
                 <h2 className="font-sans text-sm font-semibold">{entry.name}</h2>
-                <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700">
+                <span className="text-xs font-medium text-brand-700">
                   {PUBLIC_FEEDBACK_ROLE_LABELS[entry.role] ?? entry.role}
                 </span>
               </div>

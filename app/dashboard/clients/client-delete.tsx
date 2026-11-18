@@ -10,7 +10,7 @@ export function ClientDelete({ customerId, clientName }: { customerId: number; c
   return (
     <ConfirmDialog
       trigger={<Trash2 aria-hidden className="size-3.5" />}
-      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-status-danger")}
+      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-muted-foreground hover:bg-status-danger-soft hover:text-status-danger")}
       triggerAriaLabel={`Delete ${clientName}`}
       title={`Delete ${clientName}?`}
       description="This removes the client along with their notes and statements. Clients with existing orders or quotations cannot be deleted."

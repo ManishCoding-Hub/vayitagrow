@@ -10,7 +10,7 @@ export function SupplierDelete({ supplierId, companyName }: { supplierId: number
   return (
     <ConfirmDialog
       trigger={<Trash2 aria-hidden className="size-3.5" />}
-      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-status-danger")}
+      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-muted-foreground hover:bg-status-danger-soft hover:text-status-danger")}
       triggerAriaLabel={`Delete ${companyName}`}
       title={`Delete ${companyName}?`}
       description="Inventory records linked to this supplier will be unlinked, not deleted."

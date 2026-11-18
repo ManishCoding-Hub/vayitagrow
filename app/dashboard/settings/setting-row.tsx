@@ -43,7 +43,7 @@ export function SettingRow({
       </div>
       {editing ? (
         <form
-          className="flex items-center gap-2"
+          className="flex w-full items-center gap-2 sm:w-auto"
           onSubmit={(event) => {
             event.preventDefault();
             handleSave();
@@ -56,7 +56,7 @@ export function SettingRow({
             id={`setting-${settingKey}`}
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="h-8 w-52"
+            className="w-full sm:w-52"
             disabled={pending}
           />
           <Button type="submit" size="icon-sm" disabled={pending} aria-label={`Save ${label}`}>

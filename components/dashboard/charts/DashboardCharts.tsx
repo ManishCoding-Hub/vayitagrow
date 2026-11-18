@@ -320,7 +320,7 @@ export function DashboardCharts({
         <h2 id="analytics-heading" className="font-sans text-base font-semibold">
           Analytics
         </h2>
-        <div className="flex items-center gap-2">
+        <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
           <label className="sr-only" htmlFor="chart-type">
             Chart type
           </label>
@@ -328,7 +328,7 @@ export function DashboardCharts({
             id="chart-type"
             value={selected}
             onChange={(e) => setSelected(e.target.value as ChartId)}
-            className="h-9 rounded-lg border border-input bg-background px-3 text-sm font-medium focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+            className="h-9 [@media(pointer:coarse)]:h-11 rounded-lg border border-input bg-background px-3 text-sm font-medium focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
           >
             {CHART_TYPES.map((t) => (
               <option key={t.id} value={t.id}>
@@ -343,7 +343,7 @@ export function DashboardCharts({
         </div>
       </div>
 
-      <div className="h-[320px] w-full">
+      <div className="h-[240px] w-full sm:h-[320px]">
         <Chart id={selected} series={series} status={status} />
       </div>
 

@@ -138,10 +138,10 @@ export function HeroSlideshow({
       <div className="relative z-10 mt-4 space-y-4">
         <div aria-live="polite" className="flex items-end justify-between gap-4">
           <div className="min-w-0">
-            <p className="inline-flex rounded-full border border-white/25 px-3 py-1 text-[0.7rem] font-medium tracking-wide text-brand-100">
+            <p className="text-sm text-brand-200">
               {current.categoryName}
             </p>
-            <p className="mt-2 truncate font-display text-3xl text-white">{current.name}</p>
+            <p className="mt-1 truncate font-display text-3xl text-white">{current.name}</p>
           </div>
           <p className="shrink-0 pb-1 text-xs tracking-[0.2em] text-brand-200 tabular-nums">
             {pad(index + 1)} / {pad(slides.length)}

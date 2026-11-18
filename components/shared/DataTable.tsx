@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { SortSelect } from "@/components/shared/SortSelect";
 
 /**
  * Presentational, server-rendered data table. Filtering/sorting/pagination
@@ -68,8 +69,21 @@ export function DataTable<T>({
       !column.hideOnCard,
   );
 
+  const sortOptions = columns.flatMap((column) => {
+    if (!isValidElement<{ field?: unknown; children?: unknown }>(column.header)) return [];
+    const { field, children } = column.header.props;
+    return typeof field === "string" && typeof children === "string"
+      ? [{ field, label: children }]
+      : [];
+  });
+
   return (
     <div className={className}>
+      {sortOptions.length > 0 ? (
+        <div className="mb-3 md:hidden">
+          <SortSelect options={sortOptions} />
+        </div>
+      ) : null}
       <ul className="space-y-3 md:hidden">
         {rows.map((row) => (
           <li key={rowKey(row)} className="rounded-2xl border bg-card p-4 shadow-xs">

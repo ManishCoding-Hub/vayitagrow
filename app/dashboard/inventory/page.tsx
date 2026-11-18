@@ -66,7 +66,7 @@ export default async function InventoryPage(props: PageProps<"/dashboard/invento
         <span className="inline-flex items-center gap-2 tabular-nums">
           {formatNumber(record.quantity)}
           {record.quantity <= threshold ? (
-            <span className="rounded-full bg-status-warning-soft px-2 py-0.5 text-xs font-semibold text-status-warning">
+            <span className="text-xs font-semibold text-status-warning">
               Low
             </span>
           ) : null}

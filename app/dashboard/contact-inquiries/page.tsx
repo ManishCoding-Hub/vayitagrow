@@ -61,7 +61,7 @@ export default async function ContactInquiriesPage(
             <li key={inquiry.inquiryId} className="rounded-2xl border bg-card shadow-xs p-5">
               <div className="flex flex-wrap items-center gap-2">
                 <h2 className="font-sans text-sm font-semibold">{inquiry.name}</h2>
-                <span className="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700">
+                <span className="text-xs font-medium text-brand-700">
                   {CONTACT_SUBJECT_LABELS[inquiry.subject] ?? inquiry.subject}
                 </span>
                 {inquiry.organization ? (

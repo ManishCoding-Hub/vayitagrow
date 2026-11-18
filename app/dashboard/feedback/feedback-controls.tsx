@@ -129,7 +129,7 @@ export function TicketDelete({ feedbackId, subject }: { feedbackId: number; subj
   return (
     <ConfirmDialog
       trigger={<Trash2 aria-hidden className="size-3.5" />}
-      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-status-danger")}
+      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-muted-foreground hover:bg-status-danger-soft hover:text-status-danger")}
       triggerAriaLabel={`Delete ticket: ${subject}`}
       title="Delete ticket?"
       description="This permanently removes the feedback ticket."

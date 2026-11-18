@@ -19,11 +19,9 @@ export function ProductCard({ product }: { product: ProductWithDetails }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : null}
-        <span className="absolute top-4 left-4 rounded-full bg-white/80 px-3 py-1 text-[0.7rem] font-medium tracking-wide text-brand-800 backdrop-blur">
-          {product.categoryName}
-        </span>
       </div>
       <div className="flex flex-1 flex-col gap-2 p-6">
+        <p className="text-sm text-brand-700">{product.categoryName}</p>
         <h3 className="font-display text-2xl leading-tight tracking-tight">
           <Link
             href={`/products/${product.slug}`}

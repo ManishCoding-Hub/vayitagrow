@@ -16,7 +16,7 @@ export function QuotationDelete({
   return (
     <ConfirmDialog
       trigger={<Trash2 aria-hidden className="size-3.5" />}
-      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-status-danger")}
+      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-muted-foreground hover:bg-status-danger-soft hover:text-status-danger")}
       triggerAriaLabel={`Delete ${quotationNumber}`}
       title={`Delete ${quotationNumber}?`}
       description="This permanently removes the quotation and its line items."

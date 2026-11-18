@@ -10,7 +10,7 @@ export function OrderDelete({ orderId }: { orderId: number }) {
   return (
     <ConfirmDialog
       trigger={<Trash2 aria-hidden className="size-3.5" />}
-      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-status-danger")}
+      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-muted-foreground hover:bg-status-danger-soft hover:text-status-danger")}
       triggerAriaLabel={`Delete order #${orderId}`}
       title={`Delete order #${orderId}?`}
       description="This permanently removes the order along with its line items, payments, and delivery record."
