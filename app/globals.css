@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "lenis/dist/lenis.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -25,6 +26,10 @@
   --color-gold-300: #ecc95e;
   --color-gold-500: #d4a017;
   --color-gold-700: #a87d0f;
+
+  /* Warm paper surfaces for editorial sections of the public site */
+  --color-cream-50: #fbf9f3;
+  --color-cream-100: #f4f0e4;
 
   /* Semantic status colors (StatusBadge, alerts, form feedback) */
   --color-status-success: #14833b;
@@ -170,5 +175,49 @@ html {
   }
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Public-site editorial layer: fluid display type, grain, marquee    */
+/* ------------------------------------------------------------------ */
+@utility text-display {
+  font-size: clamp(2.6rem, 1.4rem + 5.6vw, 6.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+@utility text-headline {
+  font-size: clamp(2rem, 1.2rem + 3.4vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+/* Film-grain overlay; add to a `relative` section. Decorative, non-interactive. */
+@utility grain {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-track {
+  animation: marquee var(--marquee-duration, 45s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
   }
 }

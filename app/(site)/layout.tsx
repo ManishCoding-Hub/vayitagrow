@@ -1,5 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { ScrollProgress } from "@/components/shared/motion/ScrollProgress";
+import { SmoothScroll } from "@/components/shared/SmoothScroll";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -10,6 +12,8 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       >
         Skip to main content
       </a>
+      <SmoothScroll />
+      <ScrollProgress />
       <Header />
       <main id="main-content" className="flex-1">
         {children}
