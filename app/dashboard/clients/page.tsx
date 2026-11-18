@@ -15,6 +15,7 @@ import { getCustomers } from "@/lib/services/customers";
 import type { CustomerWithStats } from "@/lib/types/customer";
 import { CUSTOMER_STATUSES, type CustomerStatus } from "@/lib/types/database";
 import { paramNumber, paramString } from "@/lib/url";
+import { ClientDelete } from "./client-delete";
 import { ClientDialog } from "./client-dialog";
 
 export const metadata: Metadata = { title: "Clients" };
@@ -91,6 +92,14 @@ export default async function ClientsPage(props: PageProps<"/dashboard/clients">
       key: "status",
       header: "Status",
       cell: (customer) => <StatusBadge status={customer.status} />,
+    },
+    {
+      key: "actions",
+      header: <span className="sr-only">Actions</span>,
+      className: "w-12 text-right",
+      cell: (customer) => (
+        <ClientDelete customerId={customer.customerId} clientName={customer.fullName} />
+      ),
     },
   ];
 

@@ -99,6 +99,34 @@ export async function updateCustomer(id: number, input: CustomerInput): Promise<
   return { ok: true, data: undefined };
 }
 
+export async function deleteCustomer(id: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return customersPg.deleteCustomer(id, session);
+  await latency();
+
+  const store = db();
+  const customer = store.customers.find((c) => c.customerId === id);
+  if (!customer) return { ok: false, error: "Client not found." };
+
+  if (store.orders.some((o) => o.customerId === id)) {
+    return { ok: false, error: "Cannot delete: this client has existing orders." };
+  }
+  if (store.quotations.some((q) => q.customerId === id)) {
+    return { ok: false, error: "Cannot delete: this client has existing quotations." };
+  }
+
+  store.customers = store.customers.filter((c) => c.customerId !== id);
+  store.customerNotes = store.customerNotes.filter((n) => n.customerId !== id);
+  store.statements = store.statements.filter((s) => s.customerId !== id);
+  for (const report of store.fieldReports) {
+    if (report.customerId === id) report.customerId = null;
+  }
+
+  recordActivity(session.userId, "DELETE", "SYSTEM", id);
+  revalidateCustomerRoutes();
+  return { ok: true, data: undefined };
+}
+
 export async function addCustomerNote(
   customerId: number,
   noteText: string,

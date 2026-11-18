@@ -151,6 +151,38 @@ export async function updateCustomer(
   return { ok: true, data: undefined };
 }
 
+export async function deleteCustomer(id: number, session: SessionUser): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM customers WHERE customer_id = $1", [id]))) {
+    return { ok: false, error: "Client not found." };
+  }
+  const orders = await queryOne<{ count: number }>(
+    "SELECT COUNT(*)::int AS count FROM orders WHERE customer_id = $1",
+    [id],
+  );
+  if ((orders?.count ?? 0) > 0) {
+    return { ok: false, error: "Cannot delete: this client has existing orders." };
+  }
+  const quotations = await queryOne<{ count: number }>(
+    "SELECT COUNT(*)::int AS count FROM quotations WHERE customer_id = $1",
+    [id],
+  );
+  if ((quotations?.count ?? 0) > 0) {
+    return { ok: false, error: "Cannot delete: this client has existing quotations." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    // customer_notes, statements cascade via FK; field_reports.customer_id is set NULL.
+    await c.query("DELETE FROM customers WHERE customer_id = $1", [id]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'SYSTEM', $2)",
+      [session.userId, id],
+    );
+  });
+
+  revalidateCustomerRoutes();
+  return { ok: true, data: undefined };
+}
+
 export async function addCustomerNote(
   customerId: number,
   noteText: string,
