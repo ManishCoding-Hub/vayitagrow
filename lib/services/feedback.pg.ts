@@ -72,3 +72,19 @@ export async function updateFeedbackStatus(
   revalidatePath("/dashboard/feedback");
   return { ok: true, data: undefined };
 }
+
+export async function deleteFeedbackTicket(feedbackId: number, session: SessionUser): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM feedback WHERE feedback_id = $1", [feedbackId]))) {
+    return { ok: false, error: "Ticket not found." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    await c.query("DELETE FROM feedback WHERE feedback_id = $1", [feedbackId]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'SYSTEM', $2)",
+      [session.userId, feedbackId],
+    );
+  });
+  revalidatePath("/dashboard/feedback");
+  return { ok: true, data: undefined };
+}

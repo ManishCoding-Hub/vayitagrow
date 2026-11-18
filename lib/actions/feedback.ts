@@ -69,3 +69,19 @@ export async function updateFeedbackStatus(
   revalidatePath("/dashboard/feedback");
   return { ok: true, data: undefined };
 }
+
+export async function deleteFeedbackTicket(feedbackId: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return feedbackPg.deleteFeedbackTicket(feedbackId, session);
+  await latency();
+
+  const store = db();
+  const ticket = store.feedback.find((f) => f.feedbackId === feedbackId);
+  if (!ticket) return { ok: false, error: "Ticket not found." };
+
+  store.feedback = store.feedback.filter((f) => f.feedbackId !== feedbackId);
+
+  recordActivity(session.userId, "DELETE", "SYSTEM", feedbackId);
+  revalidatePath("/dashboard/feedback");
+  return { ok: true, data: undefined };
+}

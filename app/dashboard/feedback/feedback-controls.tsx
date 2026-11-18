@@ -1,8 +1,9 @@
 "use client";
 
-import { MessageSquarePlus } from "lucide-react";
+import { MessageSquarePlus, Trash2 } from "lucide-react";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
+import { ConfirmDialog } from "@/components/shared/ConfirmDialog";
 import { FormField, fieldAria } from "@/components/shared/FormField";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -15,7 +16,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createFeedbackTicket, updateFeedbackStatus } from "@/lib/actions/feedback";
+import { createFeedbackTicket, deleteFeedbackTicket, updateFeedbackStatus } from "@/lib/actions/feedback";
 import { FEEDBACK_STATUSES, enumLabel, type FeedbackStatus } from "@/lib/types/database";
 import { cn } from "@/lib/utils";
 
@@ -121,5 +122,20 @@ export function TicketStatusSelect({
         </option>
       ))}
     </select>
+  );
+}
+
+export function TicketDelete({ feedbackId, subject }: { feedbackId: number; subject: string }) {
+  return (
+    <ConfirmDialog
+      trigger={<Trash2 aria-hidden className="size-3.5" />}
+      triggerClassName={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }), "text-status-danger")}
+      triggerAriaLabel={`Delete ticket: ${subject}`}
+      title="Delete ticket?"
+      description="This permanently removes the feedback ticket."
+      confirmLabel="Delete ticket"
+      successMessage="Ticket deleted"
+      action={() => deleteFeedbackTicket(feedbackId)}
+    />
   );
 }

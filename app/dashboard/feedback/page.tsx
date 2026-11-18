@@ -10,7 +10,7 @@ import { formatDateTime } from "@/lib/format";
 import { getFeedbackTickets } from "@/lib/services/feedback";
 import { FEEDBACK_STATUSES, enumLabel, type FeedbackStatus } from "@/lib/types/database";
 import { paramNumber, paramString } from "@/lib/url";
-import { NewTicketDialog, TicketStatusSelect } from "./feedback-controls";
+import { NewTicketDialog, TicketDelete, TicketStatusSelect } from "./feedback-controls";
 
 export const metadata: Metadata = { title: "Feedback" };
 
@@ -71,7 +71,10 @@ export default async function FeedbackTicketsPage(props: PageProps<"/dashboard/f
                   #{ticket.feedbackId} · {ticket.username} · {formatDateTime(ticket.createdAt)}
                 </p>
               </div>
-              <TicketStatusSelect feedbackId={ticket.feedbackId} status={ticket.status} />
+              <div className="flex items-center gap-2">
+                <TicketStatusSelect feedbackId={ticket.feedbackId} status={ticket.status} />
+                <TicketDelete feedbackId={ticket.feedbackId} subject={ticket.subject} />
+              </div>
             </li>
           ))}
         </ul>
