@@ -86,7 +86,7 @@ export default async function HomePage() {
                 {company.industry}
               </p>
             </MotionReveal>
-            <SplitReveal as="h1" text={company.tagline} delay={0.15} className="text-display max-w-4xl" />
+            <SplitReveal as="h1" text={company.tagline} delay={0.15} className="text-display max-w-5xl" />
             <MotionReveal delay={0.7}>
               <p className="max-w-xl text-base leading-relaxed text-pretty text-brand-100 sm:text-lg">
                 {company.legalName} manufactures and markets bioorganic inputs that improve soil
