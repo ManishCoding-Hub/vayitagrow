@@ -4,7 +4,7 @@ import { FilterSelect } from "@/components/shared/FilterSelect";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { MotionReveal } from "@/components/shared/MotionReveal";
 import { ProductCard } from "@/components/shared/ProductCard";
-import { SectionHeading } from "@/components/shared/SectionHeading";
+import { PageHero } from "@/components/shared/PageHero";
 import { company } from "@/lib/config/company";
 import { getCategories, getPublicProducts } from "@/lib/services/products";
 import { paramNumber } from "@/lib/url";
@@ -35,20 +35,16 @@ export default async function ProductsPage(props: PageProps<"/products">) {
 
   return (
     <>
-      <section className="border-b bg-brand-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <MotionReveal>
-            <SectionHeading
-              align="left"
-              eyebrow="Our Products"
-              title="Bioorganic inputs for productive farming"
-              lede="Every product below is part of our current manufactured range - with usage, dosage, and pack sizes taken directly from the official product literature."
-            />
-          </MotionReveal>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Our Products"
+        title="Bioorganic inputs for productive farming"
+        size="headline"
+        image="/images/paddy-mist.webp"
+        lede="Every product below is part of our current manufactured range - with usage, dosage, and pack sizes taken directly from the official product literature."
+      />
 
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <section className="bg-cream-50">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         {(categoryOptions.length > 0 || categoryId) && (
           <nav aria-label="Filter by category" className="mb-10">
             <FilterSelect
@@ -71,7 +67,7 @@ export default async function ProductsPage(props: PageProps<"/products">) {
             }
           />
         ) : (
-          <ul className="grid list-none gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid list-none gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((product, index) => (
               <li key={product.productId}>
                 <MotionReveal delay={Math.min(index * 0.05, 0.25)} className="h-full">
@@ -81,6 +77,7 @@ export default async function ProductsPage(props: PageProps<"/products">) {
             ))}
           </ul>
         )}
+      </div>
       </section>
     </>
   );

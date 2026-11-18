@@ -2,11 +2,12 @@ import { ArrowRight, Eye, Factory, Target, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MotionReveal } from "@/components/shared/MotionReveal";
-import { SectionHeading } from "@/components/shared/SectionHeading";
-import { buttonVariants } from "@/components/ui/button";
+import { Magnetic } from "@/components/shared/motion/Magnetic";
+import { ParallaxImage } from "@/components/shared/motion/ParallaxImage";
+import { SplitReveal } from "@/components/shared/motion/SplitReveal";
+import { PageHero } from "@/components/shared/PageHero";
 import { company } from "@/lib/config/company";
 import { coreValues } from "@/lib/config/marketing";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -33,101 +34,147 @@ const operations = [
   },
 ];
 
+const eyebrow = "text-xs font-semibold tracking-[0.3em] uppercase";
+
 export default function AboutPage() {
   return (
     <>
-      {/* Page header */}
-      <section className="border-b bg-brand-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <MotionReveal>
-            <SectionHeading
-              align="left"
-              eyebrow="About Us"
-              title={company.legalName}
-              lede={`A ${company.businessModel} agricultural solutions company manufacturing and marketing bioorganic inputs for sustainable, productive farming.`}
+      <PageHero
+        eyebrow="About Us"
+        title={company.legalName}
+        size="headline"
+        image="/images/wheat-sprouts.webp"
+        lede={`A ${company.businessModel} agricultural solutions company manufacturing and marketing bioorganic inputs for sustainable, productive farming.`}
+      />
+
+      {/* Story */}
+      <section className="bg-cream-50">
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 py-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:px-8 lg:py-36">
+          <div>
+            <MotionReveal>
+              <p className={`${eyebrow} text-brand-600`}>Our Story</p>
+            </MotionReveal>
+            <SplitReveal
+              onView
+              text="Rooted in soil health, grown through partnership"
+              className="text-headline mt-4 text-brand-950"
+            />
+            <MotionReveal delay={0.1}>
+              <div className="mt-10 space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                <p>
+                  {company.shortName} Bioorganics was founded to bring dependable, science-led
+                  bioorganic inputs to the farmers of {company.operatingStates.join(" and ")}. We
+                  focus on products that improve soil health, crop nutrition, and overall farm
+                  efficiency - the foundations of long-term productivity.
+                </p>
+                <p>
+                  We work business-to-business: dealers, distributors, retailers, and
+                  institutional buyers are our partners on the ground. Their counters and
+                  godowns are where our products meet the farmer, so we invest in the network -
+                  fair terms, reliable supply, and field support that shows up.
+                </p>
+                <p>
+                  With our registered office in {company.registeredState}, and operations across
+                  both states, we are building the organization, product range, and digital
+                  systems of a company preparing for wider expansion.
+                </p>
+              </div>
+            </MotionReveal>
+          </div>
+
+          <MotionReveal delay={0.12}>
+            <ParallaxImage
+              src="/images/seedling-hands.webp"
+              alt="Hands holding a young seedling in soil"
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="aspect-[4/5] rounded-[2rem]"
             />
           </MotionReveal>
         </div>
       </section>
 
-      {/* Story */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <MotionReveal>
-            <SectionHeading
-              align="left"
-              eyebrow="Our Story"
-              title="Rooted in soil health, grown through partnership"
-            />
-            <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              <p>
-                {company.shortName} Bioorganics was founded to bring dependable, science-led
-                bioorganic inputs to the farmers of {company.operatingStates.join(" and ")}. We
-                focus on products that improve soil health, crop nutrition, and overall farm
-                efficiency - the foundations of long-term productivity.
-              </p>
-              <p>
-                We work business-to-business: dealers, distributors, retailers, and
-                institutional buyers are our partners on the ground. Their counters and
-                godowns are where our products meet the farmer, so we invest in the network -
-                fair terms, reliable supply, and field support that shows up.
-              </p>
-              <p>
-                With our registered office in {company.registeredState}, and operations across
-                both states, we are building the organization, product range, and digital
-                systems of a company preparing for wider expansion.
-              </p>
-            </div>
-          </MotionReveal>
-
-          <MotionReveal delay={0.12}>
-            <div className="space-y-4">
-              <div className="rounded-xl border bg-card p-6">
-                <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-brand-100 text-brand-600">
-                  <Eye aria-hidden className="size-5" />
-                </div>
-                <h3 className="font-sans text-base font-semibold">Our Vision</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  To be a trusted name in sustainable agriculture - known for products that
-                  restore soil, support farmers, and prove that productive farming and
-                  responsible farming are the same thing.
-                </p>
+      {/* Vision & mission */}
+      <section className="grain relative bg-brand-950 text-white">
+        <div className="relative mx-auto grid max-w-7xl gap-6 px-4 py-24 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-32">
+          {[
+            {
+              icon: Eye,
+              title: "Our Vision",
+              text: "To be a trusted name in sustainable agriculture - known for products that restore soil, support farmers, and prove that productive farming and responsible farming are the same thing.",
+            },
+            {
+              icon: Target,
+              title: "Our Mission",
+              text: "Deliver quality bioorganic inputs through a strong dealer network, backed by technical field support and honest, transparent business practices.",
+            },
+          ].map((item, index) => (
+            <MotionReveal key={item.title} delay={index * 0.1}>
+              <div className="h-full rounded-3xl border border-white/15 bg-white/5 p-8 sm:p-10">
+                <item.icon aria-hidden className="size-8 text-gold-300" />
+                <h2 className="mt-8 text-4xl">{item.title}</h2>
+                <p className="mt-4 text-base leading-relaxed text-brand-100">{item.text}</p>
               </div>
-              <div className="rounded-xl border bg-card p-6">
-                <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-brand-100 text-brand-600">
-                  <Target aria-hidden className="size-5" />
-                </div>
-                <h3 className="font-sans text-base font-semibold">Our Mission</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Deliver quality bioorganic inputs through a strong dealer network, backed by
-                  technical field support and honest, transparent business practices.
-                </p>
-              </div>
-            </div>
-          </MotionReveal>
+            </MotionReveal>
+          ))}
         </div>
       </section>
 
       {/* What we do */}
-      <section className="border-y bg-muted/50">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <section className="bg-cream-50">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
           <MotionReveal>
-            <SectionHeading
-              eyebrow="What We Do"
-              title="Manufacturing, marketing, and field support"
-              lede="Three connected capabilities that carry a product from formulation to a farmer's field."
-            />
+            <p className={`${eyebrow} text-brand-600`}>What We Do</p>
           </MotionReveal>
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <SplitReveal
+            onView
+            text="Manufacturing, marketing, and field support"
+            className="text-headline mt-4 max-w-4xl text-brand-950"
+          />
+          <MotionReveal delay={0.1}>
+            <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+              Three connected capabilities that carry a product from formulation to a
+              farmer&apos;s field.
+            </p>
+          </MotionReveal>
+          <ol className="mt-16 divide-y divide-brand-900/15 border-y border-brand-900/15">
             {operations.map((item, index) => (
-              <MotionReveal key={item.title} delay={index * 0.08}>
-                <div className="h-full rounded-xl border bg-card p-6">
-                  <div className="mb-4 flex size-11 items-center justify-center rounded-lg bg-brand-100 text-brand-600">
-                    <item.icon aria-hidden className="size-5" />
-                  </div>
-                  <h3 className="font-sans text-base font-semibold">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
+              <MotionReveal key={item.title}>
+                <li className="grid gap-4 py-10 md:grid-cols-[6rem_1fr_1.2fr] md:items-baseline">
+                  <span className="font-display text-xl text-gold-700">0{index + 1}</span>
+                  <h3 className="flex items-center gap-3 text-3xl text-brand-950 sm:text-4xl">
+                    <item.icon aria-hidden className="size-7 shrink-0 text-brand-600" />
+                    {item.title}
+                  </h3>
+                  <p className="text-base leading-relaxed text-muted-foreground">{item.description}</p>
+                </li>
+              </MotionReveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Core values */}
+      <section className="bg-brand-50">
+        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+          <MotionReveal>
+            <p className={`${eyebrow} text-brand-600`}>Core Values</p>
+          </MotionReveal>
+          <SplitReveal
+            onView
+            text="The principles behind every decision"
+            className="text-headline mt-4 max-w-3xl text-brand-950"
+          />
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {coreValues.map((value, index) => (
+              <MotionReveal key={value.title} delay={Math.min(index * 0.06, 0.24)}>
+                <div className="group h-full rounded-3xl border border-brand-900/10 bg-white p-8 transition-[background-color,color,translate] duration-500 hover:-translate-y-1 hover:bg-brand-900 hover:text-white">
+                  <value.icon
+                    aria-hidden
+                    className="size-8 text-brand-600 transition-colors group-hover:text-gold-300"
+                  />
+                  <h3 className="mt-8 text-2xl">{value.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-brand-100">
+                    {value.description}
                   </p>
                 </div>
               </MotionReveal>
@@ -136,44 +183,31 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Core values */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <MotionReveal>
-          <SectionHeading
-            eyebrow="Core Values"
-            title="The principles behind every decision"
-          />
-        </MotionReveal>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {coreValues.map((value, index) => (
-            <MotionReveal key={value.title} delay={Math.min(index * 0.06, 0.24)}>
-              <div className="h-full rounded-xl border bg-card p-6">
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-brand-100 text-brand-600">
-                  <value.icon aria-hidden className="size-5" />
-                </div>
-                <h3 className="font-sans text-sm font-semibold">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {value.description}
-                </p>
-              </div>
-            </MotionReveal>
-          ))}
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="border-t bg-brand-50">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-4 py-16 text-center sm:px-6 lg:px-8">
-          <MotionReveal>
-            <h2 className="max-w-2xl text-2xl tracking-tight text-balance sm:text-3xl">
-              See the products behind the company
-            </h2>
-          </MotionReveal>
-          <MotionReveal delay={0.1}>
-            <Link href="/products" className={cn(buttonVariants({ size: "lg" }), "h-11 px-5")}>
-              Explore the product range
-              <ArrowRight aria-hidden data-icon="inline-end" />
-            </Link>
+      <section className="grain relative isolate overflow-hidden bg-brand-900 text-white">
+        <ParallaxImage
+          src="/images/wheat-sunset.webp"
+          alt=""
+          sizes="100vw"
+          className="absolute inset-0 -z-10 opacity-40"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-brand-950/50" />
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 py-28 text-center sm:px-6 lg:px-8 lg:py-36">
+          <SplitReveal
+            onView
+            text="See the products behind the company"
+            className="text-headline max-w-3xl"
+          />
+          <MotionReveal delay={0.15}>
+            <Magnetic>
+              <Link
+                href="/products"
+                className="inline-flex h-13 items-center gap-2 rounded-full bg-white px-7 text-base font-medium text-brand-900 transition-colors hover:bg-gold-100 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
+              >
+                Explore the product range
+                <ArrowRight aria-hidden className="size-4" />
+              </Link>
+            </Magnetic>
           </MotionReveal>
         </div>
       </section>

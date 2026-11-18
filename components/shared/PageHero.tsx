@@ -12,12 +12,15 @@ export function PageHero({
   title,
   lede,
   image,
+  size = "display",
   children,
 }: {
   eyebrow: string;
   title: string;
   lede?: string;
   image: string;
+  /** `headline` for long titles (e.g. the legal company name). */
+  size?: "display" | "headline";
   children?: ReactNode;
 }) {
   return (
@@ -37,7 +40,7 @@ export function PageHero({
         <MotionReveal>
           <p className="text-xs font-semibold tracking-[0.3em] text-gold-300 uppercase">{eyebrow}</p>
         </MotionReveal>
-        <SplitReveal as="h1" text={title} delay={0.1} className="text-display mt-5 max-w-5xl" />
+        <SplitReveal as="h1" text={title} delay={0.1} className={`${size === "display" ? "text-display" : "text-headline"} mt-5 max-w-5xl`} />
         {lede ? (
           <MotionReveal delay={0.35}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-brand-100 sm:text-lg">
