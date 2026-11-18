@@ -36,7 +36,7 @@ export function PageHero({
         aria-hidden
         className="absolute inset-0 -z-10 bg-gradient-to-b from-brand-950/70 via-brand-950/30 to-brand-950"
       />
-      <div className="mx-auto max-w-7xl px-4 pt-40 pb-20 sm:px-6 lg:px-8 lg:pt-52 lg:pb-28">
+      <div className="mx-auto max-w-7xl px-4 pt-32 pb-14 sm:px-6 sm:pt-40 sm:pb-20 lg:px-8 lg:pt-52 lg:pb-28">
         <MotionReveal>
           <p className="text-xs font-semibold tracking-[0.3em] text-gold-300 uppercase">{eyebrow}</p>
         </MotionReveal>

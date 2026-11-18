@@ -49,7 +49,7 @@ export default function AboutPage() {
 
       {/* Story */}
       <section className="bg-cream-50">
-        <div className="mx-auto grid max-w-7xl gap-14 px-4 py-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:px-8 lg:py-36">
+        <div className="mx-auto grid max-w-7xl gap-14 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 lg:px-8 lg:py-36">
           <div>
             <MotionReveal>
               <p className={`${eyebrow} text-brand-600`}>Our Story</p>
@@ -95,7 +95,7 @@ export default function AboutPage() {
 
       {/* Vision & mission */}
       <section className="grain relative bg-brand-950 text-white">
-        <div className="relative mx-auto grid max-w-7xl gap-6 px-4 py-24 sm:px-6 md:grid-cols-2 lg:px-8 lg:py-32">
+        <div className="relative mx-auto grid max-w-7xl gap-6 px-4 py-16 sm:px-6 sm:py-24 md:grid-cols-2 lg:px-8 lg:py-32">
           {[
             {
               icon: Eye,
@@ -121,7 +121,7 @@ export default function AboutPage() {
 
       {/* What we do */}
       <section className="bg-cream-50">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-36">
           <MotionReveal>
             <p className={`${eyebrow} text-brand-600`}>What We Do</p>
           </MotionReveal>
@@ -155,7 +155,7 @@ export default function AboutPage() {
 
       {/* Core values */}
       <section className="bg-brand-50">
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-36">
           <MotionReveal>
             <p className={`${eyebrow} text-brand-600`}>Core Values</p>
           </MotionReveal>
@@ -192,7 +192,7 @@ export default function AboutPage() {
           className="absolute inset-0 -z-10 opacity-40"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-brand-950/50" />
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 py-28 text-center sm:px-6 lg:px-8 lg:py-36">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-36">
           <SplitReveal
             onView
             text="See the products behind the company"

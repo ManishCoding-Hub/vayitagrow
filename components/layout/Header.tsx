@@ -189,9 +189,9 @@ export function Header() {
             animate={{ clipPath: "circle(150% at calc(100% - 2.5rem) 2.25rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.25rem)" }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="fixed inset-0 z-[55] flex flex-col overflow-y-auto bg-brand-950 px-6 pt-28 pb-10 text-white lg:hidden"
+            className="fixed inset-0 z-[55] flex flex-col overflow-y-auto bg-brand-950 px-6 pt-28 pb-[max(2.5rem,env(safe-area-inset-bottom))] text-white lg:hidden [@media(max-height:500px)]:pt-20"
           >
-            <nav aria-label="Mobile" className="flex flex-1 flex-col justify-center gap-1">
+            <nav aria-label="Mobile" className="flex flex-1 flex-col justify-center gap-1 [@media(max-height:500px)]:grid [@media(max-height:500px)]:grid-cols-2 [@media(max-height:500px)]:content-center">
               {publicNav.map((link, index) => (
                 <motion.div
                   key={link.href}
@@ -202,7 +202,7 @@ export function Header() {
                     href={link.href}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={cn(
-                      "block rounded-md py-2 font-display text-5xl tracking-tight focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none",
+                      "block rounded-md py-2 font-display text-4xl tracking-tight sm:text-5xl [@media(max-height:500px)]:text-3xl focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none",
                       isActive(link.href) ? "text-gold-300" : "text-white/90",
                     )}
                   >
@@ -213,7 +213,7 @@ export function Header() {
             </nav>
             <Link
               href="/login"
-              className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-base font-medium text-brand-900 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
+              className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 [@media(max-height:500px)]:mt-4 text-base font-medium text-brand-900 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:outline-none"
             >
               <LogIn aria-hidden className="size-4" />
               Portal Login

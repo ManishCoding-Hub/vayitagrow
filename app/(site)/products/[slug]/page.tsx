@@ -49,7 +49,7 @@ export default async function ProductDetailPage(props: PageProps<"/products/[slu
     <>
       <section className="grain relative isolate overflow-hidden bg-brand-950 text-white">
         <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(60rem_30rem_at_80%_0%,rgba(42,157,75,0.35),transparent)]" />
-        <div className="mx-auto max-w-7xl px-4 pt-32 pb-16 sm:px-6 lg:px-8 lg:pt-40 lg:pb-20">
+        <div className="mx-auto max-w-7xl px-4 pt-28 pb-12 sm:px-6 sm:pt-32 sm:pb-16 lg:px-8 lg:pt-40 lg:pb-20">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5 text-sm text-brand-200">
               <li>
@@ -75,7 +75,7 @@ export default async function ProductDetailPage(props: PageProps<"/products/[slu
       </section>
 
       <article className="bg-cream-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
             <MotionReveal className="lg:sticky lg:top-28 lg:self-start">
               {product.imageUrl ? (

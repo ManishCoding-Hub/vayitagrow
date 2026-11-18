@@ -62,7 +62,7 @@ export function HeroSlideshow({
       role="group"
       aria-roledescription="carousel"
       aria-label="Featured products"
-      className="relative mx-auto w-full max-w-md"
+      className="relative mx-auto w-full max-w-sm sm:max-w-md"
       onPointerEnter={(event) => event.pointerType === "mouse" && setPaused(true)}
       onPointerLeave={(event) => {
         if (event.pointerType === "mouse") setPaused(false);
@@ -79,13 +79,13 @@ export function HeroSlideshow({
     >
       <span
         aria-hidden
-        className="pointer-events-none absolute -top-10 right-0 z-0 font-display text-[9rem] leading-none text-white/[0.08] select-none"
+        className="pointer-events-none absolute -top-6 right-2 z-0 font-display text-[6rem] sm:-top-10 sm:text-[9rem] leading-none text-white/[0.08] select-none"
       >
         {pad(index + 1)}
       </span>
 
       <div
-        className="relative z-10 h-[27rem] [perspective:1000px]"
+        className="relative z-10 h-[20rem] sm:h-[24rem] lg:h-[27rem] [perspective:1000px]"
         onPointerMove={(event) => {
           if (reduce || event.pointerType !== "mouse") return;
           const box = event.currentTarget.getBoundingClientRect();
@@ -95,7 +95,7 @@ export function HeroSlideshow({
       >
         <div
           aria-hidden
-          className="absolute top-1/2 left-1/2 size-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(88,180,120,0.45),rgba(88,180,120,0)_68%)]"
+          className="absolute top-1/2 left-1/2 size-[18rem] sm:size-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(88,180,120,0.45),rgba(88,180,120,0)_68%)]"
         />
         {slides.length > 1 ? (
           <>
@@ -128,7 +128,7 @@ export function HeroSlideshow({
                 fill
                 priority={index === 0}
                 sizes="28rem"
-                className="object-contain p-6 drop-shadow-[0_40px_40px_rgba(0,0,0,0.45)]"
+                className="object-contain p-10 sm:p-6 drop-shadow-[0_40px_40px_rgba(0,0,0,0.45)]"
               />
             </motion.div>
           </motion.div>

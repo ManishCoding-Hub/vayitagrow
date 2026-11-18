@@ -36,7 +36,7 @@ export function PinnedStory({
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const media = gsap.matchMedia();
-    media.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+    media.add("(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)", () => {
       const trigger = ScrollTrigger.create({
         trigger: root.current,
         start: "top top",
@@ -52,7 +52,7 @@ export function PinnedStory({
   }, [steps.length]);
 
   return (
-    <section ref={root} className="grain relative overflow-hidden bg-brand-950 text-white lg:h-screen">
+    <section ref={root} className="grain relative overflow-hidden bg-brand-950 text-white [@media(min-width:1024px)_and_(min-height:700px)]:h-screen">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:h-full lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8 lg:py-0">
         <div>
           <p className="text-xs font-semibold tracking-[0.3em] text-gold-300 uppercase">{eyebrow}</p>

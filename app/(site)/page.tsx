@@ -78,7 +78,7 @@ export default async function HomePage() {
           aria-hidden
           className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgba(5,46,24,0.75),rgba(5,46,24,0.35)_45%,rgba(5,46,24,0.95))]"
         />
-        <div className="mx-auto grid w-full max-w-7xl flex-1 gap-12 px-4 pt-36 pb-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:px-8">
+        <div className="mx-auto grid w-full max-w-7xl flex-1 gap-12 px-4 pt-28 pb-10 sm:px-6 sm:pt-36 lg:grid-cols-[1.15fr_0.85fr] lg:pb-12 lg:items-center lg:px-8">
           <div className="space-y-8">
             <MotionReveal>
               <p className="flex items-center gap-4 text-xs font-medium tracking-[0.22em] text-brand-100 uppercase sm:text-[0.8rem]">
@@ -110,7 +110,7 @@ export default async function HomePage() {
           </div>
 
           {heroSlides.length > 0 ? (
-            <MotionReveal delay={0.5} className="hidden lg:block">
+            <MotionReveal delay={0.5}>
               <HeroSlideshow slides={heroSlides} />
             </MotionReveal>
           ) : null}
@@ -151,7 +151,7 @@ export default async function HomePage() {
 
       {/* About snapshot */}
       <section className="bg-cream-50">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-36">
+        <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-36">
           <MotionReveal>
             <ParallaxImage
               src="/images/seedling-hands.webp"
@@ -207,7 +207,7 @@ export default async function HomePage() {
       {/* Categories */}
       {activeCategories.length > 0 ? (
         <section className="bg-brand-50">
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-36">
             <MotionReveal>
               <p className="text-xs font-semibold tracking-[0.3em] text-brand-600 uppercase">Product Range</p>
             </MotionReveal>
@@ -243,7 +243,7 @@ export default async function HomePage() {
       {/* Featured products */}
       {featured.length > 0 ? (
         <section className="bg-cream-50">
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-36">
             <div className="flex flex-wrap items-end justify-between gap-6">
               <div>
                 <MotionReveal>
@@ -280,7 +280,7 @@ export default async function HomePage() {
           sizes="100vw"
           className="absolute inset-0 -z-10 opacity-30"
         />
-        <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-36">
           <MotionReveal>
             <p className="text-xs font-semibold tracking-[0.3em] text-gold-300 uppercase">Where We Operate</p>
           </MotionReveal>
@@ -322,7 +322,7 @@ export default async function HomePage() {
           className="absolute inset-0 -z-10 opacity-40"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-brand-950/50" />
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 py-28 text-center sm:px-6 lg:px-8 lg:py-40">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8 lg:py-40">
           <SplitReveal
             onView
             text="Partner with us as a dealer or distributor"
