@@ -8,6 +8,7 @@ import { SearchInput } from "@/components/shared/SearchInput";
 import { getSuppliers } from "@/lib/services/inventory";
 import type { Supplier } from "@/lib/types/inventory";
 import { paramNumber, paramString } from "@/lib/url";
+import { SupplierDelete } from "./supplier-delete";
 import { SupplierDialog } from "./supplier-dialog";
 
 export const metadata: Metadata = { title: "Suppliers" };
@@ -42,8 +43,13 @@ export default async function SuppliersPage(props: PageProps<"/dashboard/supplie
     {
       key: "actions",
       header: <span className="sr-only">Actions</span>,
-      className: "w-16 text-right",
-      cell: (supplier) => <SupplierDialog supplier={supplier} />,
+      className: "w-24 text-right",
+      cell: (supplier) => (
+        <div className="flex items-center justify-end gap-1.5">
+          <SupplierDialog supplier={supplier} />
+          <SupplierDelete supplierId={supplier.supplierId} companyName={supplier.companyName} />
+        </div>
+      ),
     },
   ];
 

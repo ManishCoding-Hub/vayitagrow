@@ -130,3 +130,23 @@ export async function updateSupplier(id: number, input: SupplierInput): Promise<
   revalidatePath("/dashboard/suppliers");
   return { ok: true, data: undefined };
 }
+
+export async function deleteSupplier(id: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return inventoryPg.deleteSupplier(id, session);
+  await latency();
+
+  const store = db();
+  const supplier = store.suppliers.find((s) => s.supplierId === id);
+  if (!supplier) return { ok: false, error: "Supplier not found." };
+
+  for (const record of store.inventory) {
+    if (record.supplierId === id) record.supplierId = null;
+  }
+  store.suppliers = store.suppliers.filter((s) => s.supplierId !== id);
+
+  recordActivity(session.userId, "DELETE", "INVENTORY", id);
+  revalidatePath("/dashboard/suppliers");
+  revalidatePath("/dashboard/inventory");
+  return { ok: true, data: undefined };
+}

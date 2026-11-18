@@ -164,3 +164,23 @@ export async function updateSupplier(
   revalidatePath("/dashboard/suppliers");
   return { ok: true, data: undefined };
 }
+
+export async function deleteSupplier(id: number, session: SessionUser): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM suppliers WHERE supplier_id = $1", [id]))) {
+    return { ok: false, error: "Supplier not found." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    // Unlink rather than cascade-delete: inventory records stay, just without a supplier.
+    await c.query("UPDATE inventory SET supplier_id = NULL WHERE supplier_id = $1", [id]);
+    await c.query("DELETE FROM suppliers WHERE supplier_id = $1", [id]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'INVENTORY', $2)",
+      [session.userId, id],
+    );
+  });
+
+  revalidatePath("/dashboard/suppliers");
+  revalidatePath("/dashboard/inventory");
+  return { ok: true, data: undefined };
+}
