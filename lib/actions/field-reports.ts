@@ -81,3 +81,20 @@ export async function updateFieldReportStatus(
   revalidatePath(`/dashboard/field-reports/${reportId}`);
   return { ok: true, data: undefined };
 }
+
+export async function deleteFieldReport(reportId: number): Promise<ActionResult> {
+  const session = await requireSession();
+  if (isSupabase) return fieldReportsPg.deleteFieldReport(reportId, session);
+  await latency();
+
+  const store = db();
+  const report = store.fieldReports.find((r) => r.reportId === reportId);
+  if (!report) return { ok: false, error: "Field report not found." };
+
+  store.fieldReports = store.fieldReports.filter((r) => r.reportId !== reportId);
+
+  recordActivity(session.userId, "DELETE", "SYSTEM", reportId);
+  revalidatePath("/dashboard/field-reports");
+  revalidatePath("/dashboard");
+  return { ok: true, data: undefined };
+}

@@ -89,3 +89,21 @@ export async function updateFieldReportStatus(
   revalidatePath(`/dashboard/field-reports/${reportId}`);
   return { ok: true, data: undefined };
 }
+
+export async function deleteFieldReport(reportId: number, session: SessionUser): Promise<ActionResult> {
+  if (!(await queryOne("SELECT 1 FROM field_reports WHERE report_id = $1", [reportId]))) {
+    return { ok: false, error: "Field report not found." };
+  }
+
+  await withActor(session.userId, async (c) => {
+    await c.query("DELETE FROM field_reports WHERE report_id = $1", [reportId]);
+    await c.query(
+      "INSERT INTO activity_logs (user_id, action_type, entity_type, entity_id) VALUES ($1, 'DELETE', 'SYSTEM', $2)",
+      [session.userId, reportId],
+    );
+  });
+
+  revalidatePath("/dashboard/field-reports");
+  revalidatePath("/dashboard");
+  return { ok: true, data: undefined };
+}

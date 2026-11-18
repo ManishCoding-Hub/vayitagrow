@@ -13,6 +13,7 @@ import { getCustomerOptions } from "@/lib/services/customers";
 import { getFieldReports } from "@/lib/services/field-reports";
 import { FIELD_REPORT_STATUSES, enumLabel, type FieldReportStatus } from "@/lib/types/database";
 import { paramNumber, paramString } from "@/lib/url";
+import { ReportDelete } from "./report-delete";
 import { ReportDialog } from "./report-dialog";
 
 export const metadata: Metadata = { title: "Field Reports" };
@@ -68,10 +69,12 @@ export default async function FieldReportsPage(props: PageProps<"/dashboard/fiel
         <ul className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {page.items.map((report) => (
             <li key={report.reportId}>
-              <Link
-                href={`/dashboard/field-reports/${report.reportId}`}
-                className="flex h-full flex-col gap-3 rounded-xl border bg-card p-5 transition-[box-shadow,translate] duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-              >
+              <div className="relative flex h-full flex-col gap-3 rounded-xl border bg-card p-5 transition-[box-shadow,translate] duration-200 hover:-translate-y-0.5 hover:shadow-md">
+                <Link
+                  href={`/dashboard/field-reports/${report.reportId}`}
+                  className="absolute inset-0 rounded-xl focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                  aria-label={`View field report for ${report.dealerName}`}
+                />
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-sans text-sm font-semibold">{report.dealerName}</p>
@@ -80,7 +83,10 @@ export default async function FieldReportsPage(props: PageProps<"/dashboard/fiel
                       {report.location}
                     </p>
                   </div>
-                  <StatusBadge status={report.status} />
+                  <div className="relative z-10 flex items-center gap-2">
+                    <StatusBadge status={report.status} />
+                    <ReportDelete reportId={report.reportId} dealerName={report.dealerName} />
+                  </div>
                 </div>
                 <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                   {report.summary}
@@ -88,7 +94,7 @@ export default async function FieldReportsPage(props: PageProps<"/dashboard/fiel
                 <p className="mt-auto pt-1 text-xs text-muted-foreground">
                   Visited {formatDate(report.visitDate)} · by {report.createdByUsername}
                 </p>
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
