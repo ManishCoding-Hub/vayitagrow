@@ -85,9 +85,9 @@ export function Footer() {
           aria-hidden
           className="mt-16 flex items-end gap-[0.25em] text-[clamp(2.5rem,13vw,11.5rem)] text-white opacity-[0.06] select-none"
         >
-          <span className="relative mb-[0.12em] block h-[0.72em] shrink-0 aspect-[3/2]">
+          <span className="relative mb-[0.15em] block aspect-square h-[0.8em] shrink-0">
             <Image
-              src="/vayitagrow_logo.svg"
+              src="/vayitagrow_mark.svg"
               alt=""
               fill
               unoptimized
